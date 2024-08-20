@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 
 import dogImageBgOrange from '../assets/dog-image-bg-orange.jpg'
@@ -5,8 +6,8 @@ import { LoginForm } from '../components/LoginForm'
 
 export default function Home() {
   return (
-    <div className="w-app flex min-h-screen items-center justify-between gap-12">
-      <div className="block w-1/2 items-center justify-center sm:block">
+    <div className="flex min-h-screen w-app items-center justify-center gap-24">
+      <div className="block place-items-center sm:block">
         <Image
           src={dogImageBgOrange.src}
           alt="Cachorro branco e marrom sentado. No fundo, uma parede laranja"
@@ -17,10 +18,10 @@ export default function Home() {
           className="rounded-2xl"
         />
       </div>
-      <div className="flex min-h-screen w-3/4 flex-col px-10">
+      <div className="flex min-h-screen flex-col">
         <a
           href=""
-          className="my-6 flex w-3/4 content-end text-xl font-bold text-blue-900"
+          className="my-8 flex justify-end text-xl font-bold text-blue-900"
         >
           Organização
         </a>
@@ -28,7 +29,7 @@ export default function Home() {
           Olá, tutor(a)!
         </h1>
         <LoginForm />
-        <p className="mt-4 flex w-3/4 justify-center text-lg font-semibold">
+        <p className="mt-4 flex justify-center gap-1 text-lg font-semibold">
           Novo por aqui?{' '}
           <a href="" className="text-blue-500 hover:text-blue-700">
             {' '}
@@ -37,9 +38,10 @@ export default function Home() {
         </p>
         <a
           href=""
-          className="text-darkBlue mt-20 flex w-3/4 justify-center text-xl font-semibold hover:text-blue-800"
+          className="mt-20 flex justify-center gap-2 text-xl font-semibold text-darkBlue hover:text-blue-800"
         >
           Ajude na busca pelo amigo perdido de alguém
+          <ExternalLink />
         </a>
       </div>
     </div>

@@ -45,23 +45,21 @@ export function LoginForm() {
 
   return (
     <Form {...loginForm}>
-      <form
-        onSubmit={loginForm.handleSubmit(onSubmit)}
-        className="w-3/4 space-y-6"
-      >
+      <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={loginForm.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-darkBlue text-xl font-semibold">
+              <FormLabel className="text-xl font-semibold text-darkBlue">
                 Email
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="nome@email.com"
+                  placeholder="nome@email.com.br"
                   {...field}
-                  className="text-darkBlue text-base"
+                  className="text-base text-darkBlue"
+                  type="email"
                 />
               </FormControl>
               <FormMessage />
@@ -73,14 +71,15 @@ export function LoginForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-darkBlue text-xl font-semibold">
+              <FormLabel className="text-xl font-semibold text-darkBlue">
                 Senha
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="********"
                   {...field}
-                  className="text-darkBlue text-base"
+                  className="text-base text-darkBlue"
+                  type="password"
                 />
               </FormControl>
               <FormMessage />
@@ -89,7 +88,7 @@ export function LoginForm() {
         />
         <Button
           type="submit"
-          className="bg-darkBlue flex h-12 w-full text-xl font-semibold hover:bg-blue-950"
+          className="flex h-12 w-full bg-darkBlue text-xl font-semibold hover:bg-blue-950"
         >
           Login
         </Button>
