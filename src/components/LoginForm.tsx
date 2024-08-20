@@ -15,17 +15,27 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-const passwordValidation =
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+import { PasswordInput } from './ui/password-input'
+
+const passwordSchema = z
+  .string()
+  .min(8, { message: 'Mínimo de 8 caracteres' })
+  .refine((value) => /[A-Z]/.test(value), {
+    message: 'Pelo menos uma maiúscula',
+  })
+  .refine((value) => /[a-z]/.test(value), {
+    message: 'Pelo menos uma minúscula',
+  })
+  .refine((value) => /[0-9]/.test(value), { message: 'Pelo menos um número' })
+  .refine((value) => /[#?!@$%^&*-]/.test(value), {
+    message: 'Pelo menos um caractere especial',
+  })
 
 const loginFormSchema = z.object({
   username: z.string().email({
     message: 'Email inválido',
   }),
-  password: z.string().regex(passwordValidation, {
-    message:
-      'A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
-  }),
+  password: passwordSchema,
 })
 
 type LoginFormData = z.infer<typeof loginFormSchema>
@@ -59,10 +69,9 @@ export function LoginForm() {
                   placeholder="nome@email.com.br"
                   {...field}
                   className="text-base text-darkBlue"
-                  type="email"
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
@@ -75,14 +84,9 @@ export function LoginForm() {
                 Senha
               </FormLabel>
               <FormControl>
-                <Input
-                  placeholder="********"
-                  {...field}
-                  className="text-base text-darkBlue"
-                  type="password"
-                />
+                <PasswordInput placeholder="************" {...field} />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-xs" />
             </FormItem>
           )}
         />
