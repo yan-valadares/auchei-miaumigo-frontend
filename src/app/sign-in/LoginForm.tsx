@@ -14,8 +14,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-
-import { PasswordInput } from './ui/password-input'
+import { PasswordInput } from '@/components/ui/password-input'
 
 const passwordSchema = z
   .string()
@@ -32,7 +31,7 @@ const passwordSchema = z
   })
 
 const loginFormSchema = z.object({
-  username: z.string().email({
+  email: z.string().email({
     message: 'Email inválido',
   }),
   password: passwordSchema,
@@ -44,7 +43,7 @@ export function LoginForm() {
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      username: '',
+      email: '',
       password: '',
     },
   })
@@ -58,7 +57,7 @@ export function LoginForm() {
       <form onSubmit={loginForm.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={loginForm.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-xl font-semibold text-darkBlue">
