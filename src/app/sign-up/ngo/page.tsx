@@ -19,7 +19,7 @@ export default function Home() {
         />
       </div>
       <div className="flex min-h-screen flex-col lg:w-1/3">
-        <h1 className="mb-6 mt-8 flex w-full justify-center text-3xl font-bold text-purple-600 sm:mb-12 sm:mt-16 sm:text-4xl">
+        <h1 className="mb-6 mt-8 flex w-full justify-center text-3xl font-bold text-purple-600 sm:mb-8 sm:mt-8 sm:text-4xl">
           Informações
         </h1>
         <SignUpNGOForm />
