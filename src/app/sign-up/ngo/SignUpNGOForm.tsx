@@ -77,10 +77,10 @@ const fileSchema = z
   .optional()
   .refine((file) => {
     return !file || file.size <= MAX_UPLOAD_SIZE
-  }, 'File size must be less than 3MB')
+  }, 'Tamanho do arquivo menor que 3MB')
   .refine((file) => {
     return ACCEPTED_FILE_TYPES.includes(file?.type || '')
-  }, 'File must be a PNG')
+  }, 'Tipos de arquivos: PNG / JPG')
 
 const secondPageFormSchema = z.object({
   phone: z.string().min(10, { message: 'Mínimo 10 dígitos' }),
@@ -290,7 +290,7 @@ export function SignUpNGOForm() {
                 </FormItem>
               )}
             />
-            <div className="flex h-auto w-full items-end justify-between gap-2">
+            <div className="flex w-full items-end justify-between gap-2">
               <FormField
                 control={signUpNGOForm.control}
                 name="houseNumber"
@@ -304,7 +304,7 @@ export function SignUpNGOForm() {
                         placeholder="9999"
                         {...field}
                         value={field.value || ''}
-                        className="h-full w-full text-base text-darkBlue"
+                        className="w-full text-base text-darkBlue"
                       />
                     </FormControl>
                     <FormMessage className="text-xs" />
@@ -318,7 +318,29 @@ export function SignUpNGOForm() {
                   <FormItem className="w-1/2">
                     <Select onValueChange={field.onChange}>
                       <FormControl>
-                        <SelectTrigger className="h-full w-full text-base text-darkBlue">
+                        <SelectTrigger className="w-full text-base text-darkBlue">
+                          <SelectValue placeholder="Tipo de casa" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="house">Casa</SelectItem>
+                        <SelectItem value="apartment">Apartamento</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-xs" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="flex w-full items-end justify-between gap-2">
+              <FormField
+                control={signUpNGOForm.control}
+                name="houseType"
+                render={({ field }) => (
+                  <FormItem className="w-1/2">
+                    <Select onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className="w-full text-base text-darkBlue">
                           <SelectValue placeholder="Tipo de casa" />
                         </SelectTrigger>
                       </FormControl>
