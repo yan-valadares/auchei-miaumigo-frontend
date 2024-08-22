@@ -35,7 +35,10 @@ export function LocationProvider({ children }: LocationProviderProps) {
 
   useEffect(() => {
     ibgeAPI.get('/').then((response) => {
-      setStates(response.data)
+      const sortedStates = response.data.sort((a: State, b: State) =>
+        a.sigla.localeCompare(b.sigla),
+      )
+      setStates(sortedStates)
     })
   }, [])
 

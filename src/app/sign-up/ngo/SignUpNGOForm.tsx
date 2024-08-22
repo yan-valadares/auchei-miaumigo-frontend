@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { MoveRight } from 'lucide-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import LocationContext from '@/contexts/LocationContext'
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3 // 3MB
 const ACCEPTED_FILE_TYPES = ['image/png', 'image/jpg']
@@ -98,6 +99,8 @@ type SignUpNGOFormData = z.infer<typeof signUpNGOFormSchema>
 
 export function SignUpNGOForm() {
   const [isFirstPage, setIsFirstPage] = useState(false)
+  const { cities, states, selectedState, setSelectedState } =
+    useContext(LocationContext)
 
   const signUpNGOForm = useForm<SignUpNGOFormData>({
     resolver: zodResolver(
@@ -334,19 +337,53 @@ export function SignUpNGOForm() {
             </div>
             <div className="flex w-full items-end justify-between gap-2">
               <FormField
-                control={signUpNGOForm.control}
-                name="houseType"
+                name="state"
                 render={({ field }) => (
-                  <FormItem className="w-1/2">
-                    <Select onValueChange={field.onChange}>
+                  <FormItem className="w-1/4">
+                    <Select
+                      value={selectedState}
+                      onValueChange={(value) => {
+                        setSelectedState(value)
+                        field.onChange(value)
+                      }}
+                    >
                       <FormControl>
                         <SelectTrigger className="w-full text-base text-darkBlue">
-                          <SelectValue placeholder="Tipo de casa" />
+                          <SelectValue placeholder="UF" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="house">Casa</SelectItem>
-                        <SelectItem value="apartment">Apartamento</SelectItem>
+                        {states.map((state) => (
+                          <SelectItem key={state.id} value={state.sigla}>
+                            {state.sigla}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage className="text-xs" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                name="city"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      disabled={!selectedState}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-full text-base text-darkBlue">
+                          <SelectValue placeholder="Selecione uma cidade" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {cities.map((city) => (
+                          <SelectItem key={city.id} value={city.id.toString()}>
+                            {city.nome}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage className="text-xs" />
