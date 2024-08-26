@@ -33,8 +33,7 @@ const CepInput = forwardRef<HTMLInputElement, InputProps>(
             value: raw,
           },
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChange(syntheticEvent as any)
+        onChange(syntheticEvent as React.ChangeEvent<HTMLInputElement>)
       }
     }
 
