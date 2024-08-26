@@ -3,29 +3,28 @@ import { forwardRef, useEffect, useState } from 'react'
 import { Input, InputProps } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
-const PhoneInput = forwardRef<HTMLInputElement, InputProps>(
+const CepInput = forwardRef<HTMLInputElement, InputProps>(
   ({ className, value: inputValue, onChange, ...props }, ref) => {
     const [formattedValue, setFormattedValue] = useState<string>('')
 
     useEffect(() => {
       if (inputValue) {
         const stringValue = String(inputValue)
-        setFormattedValue(phoneMask(stringValue))
+        setFormattedValue(cepMask(stringValue))
       }
     }, [inputValue])
 
-    const phoneMask = (value: string) => {
-      const formattedPhone = value
+    const cepMask = (value: string) => {
+      const formattedCep = value
         .replace(/\D/g, '')
-        .replace(/(\d{2})(\d)/, '($1) $2')
-        .replace(/(\d)(\d{4})$/, '$1-$2')
-      return formattedPhone
+        .replace(/(\d{5})(\d)/, '$1-$2')
+      return formattedCep
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.target
       const raw = value.replace(/\D/g, '')
-      setFormattedValue(phoneMask(raw))
+      setFormattedValue(cepMask(raw))
       if (onChange) {
         const syntheticEvent = {
           ...event,
@@ -43,16 +42,16 @@ const PhoneInput = forwardRef<HTMLInputElement, InputProps>(
       <div className="relative">
         <Input
           type="text"
-          maxLength={15}
-          className={cn('phone-input', className)}
+          maxLength={9}
+          className={cn('cep-input', className)}
           value={formattedValue}
           onChange={handleChange}
           ref={ref}
           {...props}
         />
         <style>{`
-          .phone-input::-ms-reveal,
-          .phone-input::-ms-clear {
+          .cep-input::-ms-reveal,
+          .cep-input::-ms-clear {
             visibility: hidden;
             pointer-events: none;
             display: none;
@@ -63,6 +62,6 @@ const PhoneInput = forwardRef<HTMLInputElement, InputProps>(
   },
 )
 
-PhoneInput.displayName = 'PhoneInput'
+CepInput.displayName = 'CepInput'
 
-export { PhoneInput }
+export { CepInput }

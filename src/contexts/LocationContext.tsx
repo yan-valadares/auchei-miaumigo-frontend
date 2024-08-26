@@ -45,7 +45,10 @@ export function LocationProvider({ children }: LocationProviderProps) {
   useEffect(() => {
     if (selectedState) {
       ibgeAPI.get(`/${selectedState}/municipios`).then((response) => {
-        setCities(response.data)
+        const sortedCities = response.data.sort((a: City, b: City) =>
+          a.nome.localeCompare(b.nome),
+        )
+        setCities(sortedCities)
       })
     }
   }, [selectedState])

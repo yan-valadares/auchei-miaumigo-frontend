@@ -1,12 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { MoveRight } from 'lucide-react'
+import { MoveLeft, MoveRight } from 'lucide-react'
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
+import { CepInput } from '@/components/ui/cep-input'
+import { ImageUploadInput } from '@/components/ui/file-input'
 import {
   Form,
   FormControl,
@@ -46,11 +48,19 @@ const passwordSchema = z
 
 const houseNumberSchema = z
   .string()
-  .min(8, { message: 'Mínimo de 8 caracteres' })
+
   .refine((value) => /^\d+$/.test(value), {
     message: 'Apenas números',
   })
   .nullable()
+
+const cepNumberSchema = z
+  .string()
+  .min(8)
+  .max(8, { message: '8 caracteres' })
+  .refine((value) => /^\d+$/.test(value), {
+    message: 'Apenas números',
+  })
 
 const firstPageFormSchema = z
   .object({
@@ -85,6 +95,7 @@ const fileSchema = z
 
 const secondPageFormSchema = z.object({
   phone: z.string().min(10, { message: 'Mínimo 10 dígitos' }),
+  cep: cepNumberSchema,
   streetName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   houseNumber: houseNumberSchema,
   houseType: z.enum(['house', 'apartment']),
@@ -98,7 +109,7 @@ const signUpNGOFormSchema = firstPageFormSchema.and(secondPageFormSchema)
 type SignUpNGOFormData = z.infer<typeof signUpNGOFormSchema>
 
 export function SignUpNGOForm() {
-  const [isFirstPage, setIsFirstPage] = useState(false)
+  const [isFirstPage, setIsFirstPage] = useState(true)
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
 
@@ -126,6 +137,10 @@ export function SignUpNGOForm() {
     if (isFormValid) {
       setIsFirstPage(false)
     }
+  }
+
+  function handlePreviousPage() {
+    setIsFirstPage(true)
   }
 
   function onSubmit(values: SignUpNGOFormData) {
@@ -250,7 +265,7 @@ export function SignUpNGOForm() {
               <Button disabled className="h-12 w-full bg-transparent"></Button>
               <Button
                 onClick={handleNextPage}
-                className="h-12 w-full gap-1 bg-darkBlue hover:bg-blue-950"
+                className="h-12 w-full gap-2 bg-darkBlue text-base font-bold hover:bg-blue-950"
               >
                 Continuar
                 <MoveRight size={20} />
@@ -269,6 +284,21 @@ export function SignUpNGOForm() {
                   </FormLabel>
                   <FormControl>
                     <PhoneInput placeholder="(XX) XXXXX-XXXX" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={signUpNGOForm.control}
+              name="cep"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xl font-semibold text-darkBlue">
+                    Cep
+                  </FormLabel>
+                  <FormControl>
+                    <CepInput placeholder="XXXXX-XXX" {...field} />
                   </FormControl>
                   <FormMessage className="text-xs" />
                 </FormItem>
@@ -340,6 +370,9 @@ export function SignUpNGOForm() {
                 name="state"
                 render={({ field }) => (
                   <FormItem className="w-1/4">
+                    <FormLabel className="text-xl font-semibold text-darkBlue">
+                      UF
+                    </FormLabel>
                     <Select
                       value={selectedState}
                       onValueChange={(value) => {
@@ -368,6 +401,9 @@ export function SignUpNGOForm() {
                 name="city"
                 render={({ field }) => (
                   <FormItem className="w-full">
+                    <FormLabel className="text-xl font-semibold text-darkBlue">
+                      Cidade
+                    </FormLabel>
                     <Select
                       value={field.value}
                       onValueChange={field.onChange}
@@ -390,6 +426,37 @@ export function SignUpNGOForm() {
                   </FormItem>
                 )}
               />
+            </div>
+            <FormField
+              control={signUpNGOForm.control}
+              name="logoImage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-xl font-semibold text-darkBlue">
+                    Logo
+                  </FormLabel>
+                  <FormControl>
+                    <ImageUploadInput
+                      onChange={(file) => field.onChange(file)}
+                      name={field.name}
+                      ref={field.ref}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-xs" />
+                </FormItem>
+              )}
+            />
+            <div className="flex h-12 w-full gap-2 text-xl font-semibold">
+              <Button
+                onClick={handlePreviousPage}
+                className="h-12 w-full gap-2 bg-darkBlue text-base font-bold hover:bg-blue-950"
+              >
+                <MoveLeft size={20} />
+                Anterior
+              </Button>
+              <Button className="h-12 w-full gap-2 bg-green-400 text-base font-bold hover:bg-green-500">
+                Concluir
+              </Button>
             </div>
           </>
         )}
