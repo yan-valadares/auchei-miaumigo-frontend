@@ -27,7 +27,7 @@ const NumberOnlyInput = forwardRef<HTMLInputElement, NumberOnlyInputProps>(
       <Input
         type="text"
         className={cn(
-          'h-10 flex-1 border-none bg-transparent text-lg outline-none placeholder:text-muted-foreground',
+          'h-10 w-full border-none bg-transparent text-lg outline-none placeholder:text-muted-foreground',
           className,
         )}
         ref={ref}

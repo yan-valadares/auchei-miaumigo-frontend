@@ -1,17 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import dogImageBgBlue from '@/assets/dog-image-bg-blue.jpg'
+import catImageBgBlue from '@/assets/cat-image-bg-blue.jpg'
+import { SignUpTutorForm } from './SignUpTutorForm'
 
-import { SignUpNGOForm } from './SignUpNGOForm'
 
-export default function SignUpNGO() {
+export default function SignUpTutor() {
   return (
     <div className="flex min-h-screen w-app items-center justify-center sm:gap-28">
       <div className="hidden place-items-center lg:block">
         <Image
-          src={dogImageBgBlue.src}
-          alt="Cachorro branco e marrom sentado em uma cadeira branca. No fundo, uma parede azul"
+          src={catImageBgBlue.src}
+          alt="Cachorro branco e marrom sentado. No fundo, uma parede laranja"
           width={496}
           height={864}
           unoptimized
@@ -20,13 +20,13 @@ export default function SignUpNGO() {
       </div>
       <div className="flex min-h-screen flex-col lg:w-1/3">
         <h1 className="mb-6 mt-8 flex w-full justify-center text-3xl font-bold text-purple-600 sm:mb-8 sm:mt-8 sm:text-4xl">
-          Informações
+          Crie sua conta
         </h1>
-        <SignUpNGOForm />
+        <SignUpTutorForm />
         <p className="mt-2 flex justify-center gap-1 text-lg font-semibold">
           Já possui conta?
           <Link
-            href="/sign-in/ngo"
+            href="/"
             className="text-blue-500 hover:text-blue-700"
           >
             Faça login

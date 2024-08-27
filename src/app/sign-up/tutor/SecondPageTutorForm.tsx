@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/select'
 import LocationContext from '@/contexts/LocationContext'
 
-import { SignUpNGOFormData } from './SignUpNGOForm'
+import { SignUpTutorFormData } from './SignUpTutorForm'
 
 const MAX_UPLOAD_SIZE = 1024 * 1024 * 3 // 3MB
 
@@ -36,7 +36,7 @@ const fileSchema = z
     return !file || file.size <= MAX_UPLOAD_SIZE
   }, 'Tamanho do arquivo menor que 3MB')
 
-export const secondPageNGOFormSchema = z.object({
+export const secondPageTutorFormSchema = z.object({
   phone: z.string().min(10, { message: 'Mínimo 10 dígitos' }),
   cep: z
     .string()
@@ -45,20 +45,21 @@ export const secondPageNGOFormSchema = z.object({
     .refine((value) => /^\d+$/.test(value), { message: 'Apenas números' }),
   streetName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   houseNumber: z.string().max(4).nullable(),
+  houseType: z.enum(['house', 'apartment']),
   state: z.string(),
   city: z.string(),
-  logoImage: fileSchema,
+  avatar: fileSchema,
 })
 
-interface SecondPageNGOFormProps {
-  control: Control<SignUpNGOFormData>
+interface SecondPageTutorFormProps {
+  control: Control<SignUpTutorFormData>
   handlePreviousPage: () => void
 }
 
-export function SecondPageNGOForm({
+export function SecondPageTutorForm({
   control,
   handlePreviousPage,
-}: SecondPageNGOFormProps) {
+}: SecondPageTutorFormProps) {
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
 
@@ -74,6 +75,21 @@ export function SecondPageNGOForm({
             </FormLabel>
             <FormControl>
               <PhoneInput placeholder="(XX) XXXXX-XXXX" {...field} />
+            </FormControl>
+            <FormMessage className="text-xs" />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={control}
+        name="cep"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel className="text-xl font-semibold text-darkBlue">
+              CEP
+            </FormLabel>
+            <FormControl>
+              <CepInput placeholder="XXXXX-XXX" {...field}/>
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>
@@ -115,20 +131,25 @@ export function SecondPageNGOForm({
           )}
         />
         <FormField
-        control={control}
-        name="cep"
-        render={({ field }) => (
-          <FormItem className="w-full">
-            <FormLabel className="text-xl font-semibold text-darkBlue">
-              CEP
-            </FormLabel>
-            <FormControl>
-              <CepInput placeholder="XXXXX-XXX" {...field}/>
-            </FormControl>
-            <FormMessage className="text-xs" />
-          </FormItem>
-        )}
-      />
+          control={control}
+          name="houseType"
+          render={({ field }) => (
+            <FormItem className="w-3/4">
+              <Select onValueChange={field.onChange}>
+                <FormControl>
+                  <SelectTrigger className="w-full text-base text-darkBlue">
+                    <SelectValue placeholder="Tipo de casa" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="house">Casa</SelectItem>
+                  <SelectItem value="apartment">Apartamento</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
       </div>
       <div className="flex w-full items-center justify-between gap-2">
         <FormField
@@ -194,11 +215,11 @@ export function SecondPageNGOForm({
       </div>
       <FormField
         control={control}
-        name="logoImage"
+        name="avatar"
         render={({ field }) => (
           <FormItem>
             <FormLabel className="text-xl font-semibold text-darkBlue">
-              Logo
+              Foto
             </FormLabel>
             <FormControl>
               <ImageUploadInput

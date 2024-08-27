@@ -12,15 +12,15 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
+import { SignUpTutorFormData } from './SignUpTutorForm'
+import { CpfInput } from '@/components/ui/cpf-input'
 
-import type { SignUpNGOFormData } from './SignUpNGOForm'
-
-export const firstPageNGOFormSchema = z
+export const firstPageTutorFormSchema = z
   .object({
     firstName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
     lastName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
     email: z.string().email({ message: 'Email inválido' }),
-    ngoName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
+    cpf: z.string().min(11).max(11),
     password: z
       .string()
       .min(8, { message: 'Mínimo de 8 caracteres' })
@@ -43,15 +43,15 @@ export const firstPageNGOFormSchema = z
     path: ['confirmPassword'],
   })
 
-interface FirstPageNGOFormProps {
-  control: Control<SignUpNGOFormData>
+interface FirstPageTutorFormProps {
+  control: Control<SignUpTutorFormData>
   handleNextPage: () => void
 }
 
-export function FirstPageNGOForm({
+export function FirstPageTutorForm({
   control,
   handleNextPage,
-}: FirstPageNGOFormProps) {
+}: FirstPageTutorFormProps) {
   return (
     <>
       <FormField
@@ -98,7 +98,7 @@ export function FirstPageNGOForm({
         render={({ field }) => (
           <FormItem>
             <FormLabel className="text-xl font-semibold text-darkBlue">
-              Email da ONG
+              Email
             </FormLabel>
             <FormControl>
               <Input
@@ -113,18 +113,14 @@ export function FirstPageNGOForm({
       />
       <FormField
         control={control}
-        name="ngoName"
+        name="cpf"
         render={({ field }) => (
           <FormItem>
             <FormLabel className="text-xl font-semibold text-darkBlue">
-              Nome da ONG
+              CPF
             </FormLabel>
             <FormControl>
-              <Input
-                placeholder="Mundo dos Pets"
-                {...field}
-                className="text-base text-darkBlue"
-              />
+              <CpfInput placeholder="XXX.XXX.XXX-XX" {...field}/>
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>

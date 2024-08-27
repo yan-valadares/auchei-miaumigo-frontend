@@ -7,42 +7,43 @@ import type { z } from 'zod'
 
 import { Form } from '@/components/ui/form'
 
-import { firstPageNGOFormSchema, FirstPageNGOForm } from './FirstPageNGOForm'
-import { secondPageNGOFormSchema, SecondPageNGOForm } from './SecondPageNGOForm'
+import { firstPageTutorFormSchema, FirstPageTutorForm } from './FirstPageTutorForm'
+import { secondPageTutorFormSchema, SecondPageTutorForm } from './SecondPageTutorForm'
 
-const signUpNGOFormSchema = firstPageNGOFormSchema.and(secondPageNGOFormSchema)
+const signUpTutorFormSchema = firstPageTutorFormSchema.and(secondPageTutorFormSchema)
 
-export type SignUpNGOFormData = z.infer<typeof signUpNGOFormSchema>
+export type SignUpTutorFormData = z.infer<typeof signUpTutorFormSchema>
 
-export function SignUpNGOForm() {
+export function SignUpTutorForm() {
   const [isFirstPage, setIsFirstPage] = useState(true)
-  const [formData, setFormData] = useState<Partial<SignUpNGOFormData>>({})
+  const [formData, setFormData] = useState<Partial<SignUpTutorFormData>>({})
 
-  const signUpNGOForm = useForm<SignUpNGOFormData>({
+  const signUpTutorForm = useForm<SignUpTutorFormData>({
     resolver: zodResolver(
-      isFirstPage ? firstPageNGOFormSchema : secondPageNGOFormSchema,
+      isFirstPage ? firstPageTutorFormSchema : secondPageTutorFormSchema,
     ),
     defaultValues: {
       firstName: '',
       lastName: '',
       email: '',
-      ngoName: '',
+      cpf: '',
       password: '',
       confirmPassword: '',
       phone: '',
       streetName: '',
       state: '',
       city: '',
-      logoImage: undefined,
+      houseType: 'house',
+      avatar: undefined,
     },
   })
 
   const handleNextPage = async () => {
-    const isFormValid = await signUpNGOForm.trigger()
+    const isFormValid = await signUpTutorForm.trigger()
     if (isFormValid) {
       setFormData((prevData) => ({
         ...prevData,
-        ...signUpNGOForm.getValues(),
+        ...signUpTutorForm.getValues(),
       }))
       setIsFirstPage(false)
     }
@@ -52,7 +53,7 @@ export function SignUpNGOForm() {
     setIsFirstPage(true)
   }
 
-  function onSubmit(values: Partial<SignUpNGOFormData>) {
+  function onSubmit(values: Partial<SignUpTutorFormData>) {
     const combinedData = {
       ...formData,
       ...values,
@@ -60,21 +61,22 @@ export function SignUpNGOForm() {
 
     console.log(combinedData)
   }
-
+ 
   return (
-    <Form {...signUpNGOForm}>
+    <Form {...signUpTutorForm}>
       <form
-        onSubmit={signUpNGOForm.handleSubmit(onSubmit)}
+        onSubmit={signUpTutorForm.handleSubmit(onSubmit)}
         className="mx-2 space-y-4 sm:mx-0"
       >
+        
         {isFirstPage ? (
-          <FirstPageNGOForm
-            control={signUpNGOForm.control}
+          <FirstPageTutorForm
+            control={signUpTutorForm.control}
             handleNextPage={handleNextPage}
           />
         ) : (
-          <SecondPageNGOForm
-            control={signUpNGOForm.control}
+          <SecondPageTutorForm
+            control={signUpTutorForm.control}
             handlePreviousPage={handlePreviousPage}
           />
         )}

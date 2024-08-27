@@ -51,7 +51,7 @@ const ImageUploadInput = forwardRef<HTMLInputElement, ImageUploadInputProps>(
 
         {selectedFile && (
           <div className="mt-4 flex w-auto items-center justify-between rounded-lg border bg-white p-2 sm:p-4">
-            <div className="flex items-center">
+            <div className="flex items-center gap-1">
               <FileImage className="h-5 w-5" />
               <span className="text-gray-700">{selectedFile.name}</span>
             </div>
