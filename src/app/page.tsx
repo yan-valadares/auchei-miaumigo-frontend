@@ -31,7 +31,10 @@ export default function Home() {
         <LoginForm />
         <p className="mt-4 flex justify-center gap-1 text-lg font-semibold">
           Novo por aqui?
-          <Link href="/sign-up/tutor" className="text-blue-500 hover:text-blue-700">
+          <Link
+            href="/sign-up/tutor"
+            className="text-blue-500 hover:text-blue-700"
+          >
             Crie uma conta
           </Link>
         </p>

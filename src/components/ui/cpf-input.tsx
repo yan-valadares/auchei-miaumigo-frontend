@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react'
+
 import { Input, InputProps } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 
@@ -15,10 +16,10 @@ const CpfInput = forwardRef<HTMLInputElement, InputProps>(
 
     const cpfMask = (value: string) => {
       const formattedCpf = value
-        .replace(/\D/g, '') 
-        .replace(/(\d{3})(\d)/, '$1.$2') 
-        .replace(/(\d{3})(\d)/, '$1.$2') 
-        .replace(/(\d{3})(\d{1,2})$/, '$1-$2') 
+        .replace(/\D/g, '')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d)/, '$1.$2')
+        .replace(/(\d{3})(\d{1,2})$/, '$1-$2')
       return formattedCpf
     }
 
