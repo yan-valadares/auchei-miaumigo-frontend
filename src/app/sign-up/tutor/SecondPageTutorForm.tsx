@@ -89,7 +89,7 @@ export function SecondPageTutorForm({
               CEP
             </FormLabel>
             <FormControl>
-              <CepInput placeholder="XXXXX-XXX" {...field}/>
+              <CepInput placeholder="XXXXX-XXX" {...field} />
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>

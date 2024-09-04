@@ -115,20 +115,20 @@ export function SecondPageNGOForm({
           )}
         />
         <FormField
-        control={control}
-        name="cep"
-        render={({ field }) => (
-          <FormItem className="w-full">
-            <FormLabel className="text-xl font-semibold text-darkBlue">
-              CEP
-            </FormLabel>
-            <FormControl>
-              <CepInput placeholder="XXXXX-XXX" {...field}/>
-            </FormControl>
-            <FormMessage className="text-xs" />
-          </FormItem>
-        )}
-      />
+          control={control}
+          name="cep"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel className="text-xl font-semibold text-darkBlue">
+                CEP
+              </FormLabel>
+              <FormControl>
+                <CepInput placeholder="XXXXX-XXX" {...field} />
+              </FormControl>
+              <FormMessage className="text-xs" />
+            </FormItem>
+          )}
+        />
       </div>
       <div className="flex w-full items-center justify-between gap-2">
         <FormField

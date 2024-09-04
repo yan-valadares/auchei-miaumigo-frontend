@@ -3,6 +3,7 @@ import type { Control } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
+import { CpfInput } from '@/components/ui/cpf-input'
 import {
   FormControl,
   FormField,
@@ -12,8 +13,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { PasswordInput } from '@/components/ui/password-input'
+
 import { SignUpTutorFormData } from './SignUpTutorForm'
-import { CpfInput } from '@/components/ui/cpf-input'
 
 export const firstPageTutorFormSchema = z
   .object({
@@ -120,7 +121,7 @@ export function FirstPageTutorForm({
               CPF
             </FormLabel>
             <FormControl>
-              <CpfInput placeholder="XXX.XXX.XXX-XX" {...field}/>
+              <CpfInput placeholder="XXX.XXX.XXX-XX" {...field} />
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>

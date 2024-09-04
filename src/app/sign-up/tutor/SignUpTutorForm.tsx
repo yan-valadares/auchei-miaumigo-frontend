@@ -7,10 +7,18 @@ import type { z } from 'zod'
 
 import { Form } from '@/components/ui/form'
 
-import { firstPageTutorFormSchema, FirstPageTutorForm } from './FirstPageTutorForm'
-import { secondPageTutorFormSchema, SecondPageTutorForm } from './SecondPageTutorForm'
+import {
+  FirstPageTutorForm,
+  firstPageTutorFormSchema,
+} from './FirstPageTutorForm'
+import {
+  SecondPageTutorForm,
+  secondPageTutorFormSchema,
+} from './SecondPageTutorForm'
 
-const signUpTutorFormSchema = firstPageTutorFormSchema.and(secondPageTutorFormSchema)
+const signUpTutorFormSchema = firstPageTutorFormSchema.and(
+  secondPageTutorFormSchema,
+)
 
 export type SignUpTutorFormData = z.infer<typeof signUpTutorFormSchema>
 
@@ -61,14 +69,13 @@ export function SignUpTutorForm() {
 
     console.log(combinedData)
   }
- 
+
   return (
     <Form {...signUpTutorForm}>
       <form
         onSubmit={signUpTutorForm.handleSubmit(onSubmit)}
         className="mx-2 space-y-4 sm:mx-0"
       >
-        
         {isFirstPage ? (
           <FirstPageTutorForm
             control={signUpTutorForm.control}

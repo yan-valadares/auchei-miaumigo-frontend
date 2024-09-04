@@ -7,8 +7,8 @@ import type { z } from 'zod'
 
 import { Form } from '@/components/ui/form'
 
-import { firstPageNGOFormSchema, FirstPageNGOForm } from './FirstPageNGOForm'
-import { secondPageNGOFormSchema, SecondPageNGOForm } from './SecondPageNGOForm'
+import { FirstPageNGOForm, firstPageNGOFormSchema } from './FirstPageNGOForm'
+import { SecondPageNGOForm, secondPageNGOFormSchema } from './SecondPageNGOForm'
 
 const signUpNGOFormSchema = firstPageNGOFormSchema.and(secondPageNGOFormSchema)
 

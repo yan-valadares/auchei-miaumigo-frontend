@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import catImageBgBlue from '@/assets/cat-image-bg-blue.jpg'
-import { SignUpTutorForm } from './SignUpTutorForm'
 
+import { SignUpTutorForm } from './SignUpTutorForm'
 
 export default function SignUpTutor() {
   return (
@@ -25,10 +25,7 @@ export default function SignUpTutor() {
         <SignUpTutorForm />
         <p className="mt-2 flex justify-center gap-1 text-lg font-semibold">
           Já possui conta?
-          <Link
-            href="/"
-            className="text-blue-500 hover:text-blue-700"
-          >
+          <Link href="/" className="text-blue-500 hover:text-blue-700">
             Faça login
           </Link>
         </p>
