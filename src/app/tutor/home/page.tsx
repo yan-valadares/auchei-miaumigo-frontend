@@ -1,25 +1,54 @@
+'use client'
+
+import { ExternalLink } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+import TutorHeader from '@/app/tutor/TutorHeader'
+import adoptionBenefits from '@/assets/adoption-benefits.jpg'
+import findYourFriend from '@/assets/find-your-friend.jpg'
+
+import LostAnimalsCarousel from './LostAnimalsCarousel'
+
 export default function TutorHome() {
   return (
-    <div className="flex h-full w-full flex-col border-red-100">
-      <header className="flex h-14 w-full items-center justify-center gap-16 bg-purple-600">
-        <div className="flex h-full w-40 items-center justify-center bg-slate-400">
-          Logo
+    <div className="flex min-h-screen w-full flex-col items-center border-red-100">
+      <TutorHeader />
+      <div className="flex h-full w-app flex-col items-center justify-center gap-8 px-32">
+        <Link href="">
+          <Image
+            src={adoptionBenefits.src}
+            alt="Imagem de um cachorro triste que leva a um site para ajudar a compreender os benefícios da adoção"
+            width={256}
+            height={128}
+            unoptimized
+            className="h-40 w-full rounded-2xl"
+          />
+        </Link>
+        <Link
+          href=""
+          className="flex w-full items-center justify-center gap-4 rounded-lg bg-orange-400 py-2 text-4xl text-white"
+        >
+          Ajude outras pessoas a acharem o amigo perdido
+          <ExternalLink size={32} className="mb-1" />
+        </Link>
+        <div className="flex w-full flex-col">
+          <p className="text-3xl font-semibold text-purple-500">
+            Viu eles por aí? Avise o tutor
+          </p>
+          <LostAnimalsCarousel />
         </div>
-        <nav className="flex gap-8 text-xl font-semibold text-slate-100">
-          <a href="" className="hover:scale-110">
-            Home
-          </a>
-          <a href="" className="hover:scale-110">
-            Adotar animal
-          </a>
-          <a href="" className="hover:scale-110">
-            ONGs
-          </a>
-          <a href="" className="hover:scale-110">
-            Animais perdidos
-          </a>
-        </nav>
-      </header>
+        <Link href="">
+          <Image
+            src={findYourFriend.src}
+            alt="Imagem de um cachorro olhando para o horizonte que leva para aba de busca de animais para adoção"
+            width={256}
+            height={128}
+            unoptimized
+            className="h-40 w-full rounded-2xl"
+          />
+        </Link>
+      </div>
     </div>
   )
 }

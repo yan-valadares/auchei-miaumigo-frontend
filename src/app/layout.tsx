@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={nunito.variable}>
       <LocationProvider>
-        <body className="flex min-h-screen items-center justify-center antialiased">
+        <body className="flex min-h-screen justify-center antialiased">
           {children}
         </body>
       </LocationProvider>
