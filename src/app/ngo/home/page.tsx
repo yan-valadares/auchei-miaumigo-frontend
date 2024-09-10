@@ -4,20 +4,21 @@ import { ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import TutorHeader from '@/app/tutor/TutorHeader'
-import adoptionBenefits from '@/assets/adoption-benefits.jpg'
-import findYourFriend from '@/assets/find-your-friend.jpg'
+import myNGOAnimals from '@/assets/my-ngo-animals.jpg'
+import requests from '@/assets/requests.jpg'
 import LostAnimalsCarousel from '@/components/LostAnimalsCarousel'
 
-export default function TutorHome() {
+import NGOHeader from '../NGOHeader'
+
+export default function NGOHome() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center border-red-100">
-      <TutorHeader />
+      <NGOHeader />
       <div className="flex h-full w-app flex-col items-center justify-center gap-8 px-32">
         <Link href="">
           <Image
-            src={adoptionBenefits.src}
-            alt="Imagem de um cachorro triste que leva a um site para ajudar a compreender os benefícios da adoção"
+            src={myNGOAnimals.src}
+            alt="Imagem de um cachorro marrom feliz que leva aos animais da minha ONG"
             width={256}
             height={128}
             unoptimized
@@ -39,8 +40,8 @@ export default function TutorHome() {
         </div>
         <Link href="">
           <Image
-            src={findYourFriend.src}
-            alt="Imagem de um cachorro olhando para o horizonte que leva para aba de busca de animais para adoção"
+            src={requests.src}
+            alt="Gato com olhos esbugalhados que leva para aba solicitações da minha ONG"
             width={256}
             height={128}
             unoptimized
