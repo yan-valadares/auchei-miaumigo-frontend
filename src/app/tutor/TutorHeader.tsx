@@ -1,6 +1,9 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import UserPerfilDialog from './UserPerfilDialog'
 
 export default function TutorHeader() {
   const pathName = usePathname()
@@ -33,9 +36,16 @@ export default function TutorHeader() {
           </Link>
         ))}
       </nav>
-      <button className="h-fit w-fit">
-        <CircleUserRound size={32} className="text-white" />
-      </button>
+      <Dialog.Root open>
+        <Dialog.Trigger className="h-fit w-fit">
+          <CircleUserRound size={32} className="text-white" />
+        </Dialog.Trigger>
+
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+          <UserPerfilDialog />
+        </Dialog.Portal>
+      </Dialog.Root>
     </header>
   )
 }
