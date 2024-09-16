@@ -41,13 +41,13 @@ export default function TutorInformations({
           <div className="flex w-full gap-4">
             <div className="flex flex-1 flex-col">
               <label className="text-blue-900">Nome</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 Alexandrina
               </p>
             </div>
             <div className="flex flex-1 flex-col">
               <label className="text-blue-900">Último nome</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 Monteirodias
               </p>
             </div>
@@ -56,13 +56,13 @@ export default function TutorInformations({
           <div className="flex w-full gap-4">
             <div className="flex flex-1 flex-col">
               <label className="text-blue-900">CPF</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 999.999.999-99
               </p>
             </div>
             <div className="flex flex-1 flex-col">
               <label className="text-blue-900">Telefone</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 (19) 99999-9999
               </p>
             </div>
@@ -71,13 +71,13 @@ export default function TutorInformations({
           <div className="flex w-full gap-4">
             <div className="flex-1">
               <label className="text-blue-900">Email</label>
-              <p className="truncate rounded border border-gray-300 p-2 text-blue-900">
+              <p className="truncate rounded border border-gray-300 px-3 py-2 text-blue-900">
                 alexandrina.monteirodias@email.com.br
               </p>
             </div>
             <div className="basis-2/8 flex flex-col">
               <label className="text-blue-900">CEP</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 99999-999
               </p>
             </div>
@@ -86,13 +86,13 @@ export default function TutorInformations({
           <div className="flex w-full gap-4">
             <div className="flex flex-1 flex-col">
               <label className="text-blue-900">Logradouro</label>
-              <p className="truncate rounded border border-gray-300 p-2 text-blue-900">
+              <p className="truncate rounded border border-gray-300 px-3 py-2 text-blue-900">
                 Avenida Presidente Getúlio Vargas
               </p>
             </div>
             <div className="flex flex-shrink-0 basis-1/6 flex-col">
               <label className="text-blue-900">Número</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 9999
               </p>
             </div>
@@ -101,19 +101,19 @@ export default function TutorInformations({
           <div className="flex w-full gap-4">
             <div className="basis-1/8 flex flex-shrink-0 flex-col">
               <label className="text-blue-900">UF</label>
-              <p className="truncate rounded border border-gray-300 p-2 text-blue-900">
+              <p className="truncate rounded border border-gray-300 px-3 py-2 text-blue-900">
                 SP
               </p>
             </div>
             <div className="flex flex-1 flex-col truncate">
               <label className="text-blue-900">Cidade</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 São José do Vale do Rio Preto
               </p>
             </div>
             <div className="basis-3/8 flex flex-shrink-0 flex-col">
               <label className="text-blue-900">Cidade</label>
-              <p className="rounded border border-gray-300 p-2 text-blue-900">
+              <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
                 Apartamento
               </p>
             </div>
