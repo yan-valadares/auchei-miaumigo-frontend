@@ -1,6 +1,8 @@
-import React, { forwardRef } from 'react'
+import { FileImage, ImageUp, X } from 'lucide-react'
+import React, { forwardRef, useState } from 'react'
 
 import { Input, InputProps } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 import { CepInput } from './cep-input'
 import { CpfInput } from './cpf-input'
@@ -81,3 +83,72 @@ const NumberOnlyInputVariant = forwardRef<
 NumberOnlyInputVariant.displayName = 'NumberOnlyInputVariant'
 
 export { NumberOnlyInputVariant }
+
+export interface FileUploadInputVariantProps {
+  onChange: (file?: File) => void
+  name?: string
+}
+
+const FileUploadInputVariant = forwardRef<
+  HTMLInputElement,
+  FileUploadInputVariantProps
+>(({ onChange, name }, ref) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    setSelectedFile(file ?? null)
+    if (onChange) {
+      onChange(file)
+    }
+  }
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null)
+    if (onChange) {
+      onChange(undefined)
+    }
+  }
+
+  return (
+    <div className="relative flex h-28 w-28 overflow-hidden rounded-full border-2 border-gray-300">
+      <label
+        htmlFor="file-upload"
+        className={cn(
+          'flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2 text-darkBlue',
+          'hover:bg-blue-50 focus:outline-none',
+        )}
+      >
+        <ImageUp className="h-6 w-6" />
+      </label>
+      <input
+        id="file-upload"
+        name={name}
+        type="file"
+        ref={ref}
+        onChange={handleFileChange}
+        className="hidden"
+      />
+
+      {selectedFile && (
+        <div className="absolute left-0 top-0 flex h-full w-full items-center justify-between border border-gray-300 bg-white p-2">
+          <div className="flex items-center gap-1">
+            <FileImage className="h-6 w-6" />
+            <span className="text-xs text-gray-700">{selectedFile.name}</span>
+          </div>
+          <button
+            type="button"
+            onClick={handleRemoveFile}
+            className="text-red-600 hover:text-red-800 focus:outline-none"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+      )}
+    </div>
+  )
+})
+
+FileUploadInputVariant.displayName = 'FileUploadInputVariant'
+
+export { FileUploadInputVariant }

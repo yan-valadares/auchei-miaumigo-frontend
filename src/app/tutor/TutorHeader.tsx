@@ -3,7 +3,7 @@ import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import UserPerfilDialog from './UserPerfilDialog'
+import TutorPerfilDialog from './TutorPerfilDialog'
 
 export default function TutorHeader() {
   const pathName = usePathname()
@@ -36,14 +36,14 @@ export default function TutorHeader() {
           </Link>
         ))}
       </nav>
-      <Dialog.Root open>
+      <Dialog.Root>
         <Dialog.Trigger className="h-fit w-fit">
           <CircleUserRound size={32} className="text-white" />
         </Dialog.Trigger>
 
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 bg-black/70" />
-          <UserPerfilDialog />
+          <TutorPerfilDialog />
         </Dialog.Portal>
       </Dialog.Root>
     </header>

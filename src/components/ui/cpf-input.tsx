@@ -43,7 +43,7 @@ const CpfInput = forwardRef<HTMLInputElement, InputProps>(
       <div className="relative">
         <Input
           type="text"
-          maxLength={14} // 11 digits + 2 separators (dots) + 1 separator (dash)
+          maxLength={14} // 11 digitos + 2 separadores (pontos) + 1 separador (traço)
           className={cn('cpf-input', className)}
           value={formattedValue}
           onChange={handleChange}

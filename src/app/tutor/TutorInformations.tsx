@@ -55,7 +55,7 @@ export default function TutorInformations() {
               alexandrina.monteirodias@email.com.br
             </p>
           </div>
-          <div className="basis-2/8 flex flex-col">
+          <div className="flex basis-1/4 flex-col">
             <label className="text-blue-900">CEP</label>
             <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
               99999-999
@@ -91,7 +91,7 @@ export default function TutorInformations() {
               São José do Vale do Rio Preto
             </p>
           </div>
-          <div className="basis-3/8 flex flex-shrink-0 flex-col">
+          <div className="flex flex-shrink-0 basis-2/6 flex-col">
             <label className="text-blue-900">Tipo de casa</label>
             <p className="rounded border border-gray-300 px-3 py-2 text-blue-900">
               Apartamento
