@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
-import { PencilLine, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -19,6 +19,7 @@ import {
   CepInputVariant,
   CpfInputVariant,
   InputVariant,
+  NumberOnlyInputVariant,
   PhoneInputVariant,
 } from '@/components/ui/input-variant'
 
@@ -301,7 +302,7 @@ export default function UserPerfilDialog() {
                           Número
                         </FormLabel>
                         <FormControl>
-                          <PhoneInputVariant
+                          <NumberOnlyInputVariant
                             placeholder="9999"
                             {...field}
                             className="w-full"

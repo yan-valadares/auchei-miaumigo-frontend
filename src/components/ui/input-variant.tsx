@@ -4,6 +4,7 @@ import { Input, InputProps } from '@/components/ui/input'
 
 import { CepInput } from './cep-input'
 import { CpfInput } from './cpf-input'
+import { NumberOnlyInput } from './number-only-input'
 import { PhoneInput } from './phone-input'
 
 const InputVariant = React.forwardRef<HTMLInputElement, InputProps>(
@@ -61,3 +62,22 @@ const CepInputVariant = forwardRef<HTMLInputElement, InputProps>(
 CepInputVariant.displayName = 'CepInputVariant'
 
 export { CepInputVariant }
+
+interface NumberOnlyInputVariantProps extends Omit<InputProps, 'value'> {
+  value?: string | number | null
+}
+
+const NumberOnlyInputVariant = forwardRef<
+  HTMLInputElement,
+  NumberOnlyInputVariantProps
+>((props, ref) => (
+  <NumberOnlyInput
+    {...props}
+    className={`h-6 w-full rounded border text-base text-blue-900 placeholder:text-slate-400 ${props.className}`}
+    ref={ref}
+  />
+))
+
+NumberOnlyInputVariant.displayName = 'NumberOnlyInputVariant'
+
+export { NumberOnlyInputVariant }
