@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'lucide-react'
+import { PencilLine, X } from 'lucide-react'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -22,6 +22,14 @@ import {
   NumberOnlyInputVariant,
   PhoneInputVariant,
 } from '@/components/ui/input-variant'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select-variant'
+import LocationContext from '@/contexts/LocationContext'
 
 import TutorInformations from './TutorInformations'
 
@@ -94,10 +102,8 @@ const initialUserInformations: UserProfileFormData = {
 
 export default function UserPerfilDialog() {
   const [isEditing, setIsEditing] = useState(false)
-
-  const [profile, setProfile] = useState<UserProfileFormData>(
-    initialUserInformations,
-  )
+  const { cities, states, selectedState, setSelectedState } =
+    useContext(LocationContext)
 
   const userPerfilForm = useForm<UserProfileFormData>({
     resolver: zodResolver(userProfileSchema),
@@ -108,250 +114,342 @@ export default function UserPerfilDialog() {
     console.log(values)
   }
 
-  return isEditing ? (
+  return (
     <Dialog.Content className="fixed left-1/2 top-1/2 w-dialog max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-md bg-white px-6 py-4 text-gray-900 shadow">
       <Dialog.Title hidden>User Perfil</Dialog.Title>
       <div className="flex flex-col gap-6">
-        <div className="flex items-center justify-end">
-          <Dialog.Close>
-            <X />
-          </Dialog.Close>
-        </div>
-        <Form {...userPerfilForm}>
-          <form
-            onSubmit={userPerfilForm.handleSubmit(onSubmit)}
-            className="flex flex-col gap-6"
-          >
-            <div className="flex w-full items-center justify-center">
-              <div className="flex h-28 w-28 overflow-hidden rounded-full">
-                <Image
-                  src={userTestImage.src}
-                  alt="Imagem do perfil do usuário"
-                  width={144}
-                  height={144}
-                  unoptimized
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="flex w-full gap-4">
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Nome
-                        </FormLabel>
-                        <FormControl>
-                          <InputVariant
-                            placeholder="Alexandrina"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
-                </div>
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Último nome
-                        </FormLabel>
-                        <FormControl>
-                          <InputVariant
-                            placeholder="Monteirodias"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
+        {isEditing ? (
+          <div className="flex items-center justify-end">
+            <Dialog.Close>
+              <X />
+            </Dialog.Close>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between">
+            <button onClick={() => setIsEditing(true)}>
+              <PencilLine />
+            </button>
+            <Dialog.Close>
+              <X />
+            </Dialog.Close>
+          </div>
+        )}
+        {isEditing ? (
+          <Form {...userPerfilForm}>
+            <form
+              onSubmit={userPerfilForm.handleSubmit(onSubmit)}
+              className="flex flex-col gap-6"
+            >
+              <div className="flex w-full items-center justify-center">
+                <div className="flex h-28 w-28 overflow-hidden rounded-full">
+                  <Image
+                    src={userTestImage.src}
+                    alt="Imagem do perfil do usuário"
+                    width={144}
+                    height={144}
+                    unoptimized
+                    className="object-cover"
                   />
                 </div>
               </div>
+              <div className="flex flex-col gap-4">
+                <div className="flex w-full gap-4">
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="firstName"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Nome
+                          </FormLabel>
+                          <FormControl>
+                            <InputVariant
+                              placeholder="Alexandrina"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="lastName"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Último nome
+                          </FormLabel>
+                          <FormControl>
+                            <InputVariant
+                              placeholder="Monteirodias"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                </div>
 
-              <div className="flex w-full gap-4">
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="cpf"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          CPF
-                        </FormLabel>
-                        <FormControl>
-                          <CpfInputVariant
-                            placeholder="999.999.999-99"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
+                <div className="flex w-full gap-4">
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="cpf"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            CPF
+                          </FormLabel>
+                          <FormControl>
+                            <CpfInputVariant
+                              placeholder="999.999.999-99"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Telefone
+                          </FormLabel>
+                          <FormControl>
+                            <PhoneInputVariant
+                              placeholder="(19) 99999-9999"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Telefone
-                        </FormLabel>
-                        <FormControl>
-                          <PhoneInputVariant
-                            placeholder="(19) 99999-9999"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
-                </div>
-              </div>
 
-              <div className="flex w-full gap-4">
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Email
-                        </FormLabel>
-                        <FormControl>
-                          <InputVariant
-                            placeholder="alexandrina.monteirodias@email.com.br"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
+                <div className="flex w-full gap-4">
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Email
+                          </FormLabel>
+                          <FormControl>
+                            <InputVariant
+                              placeholder="alexandrina.monteirodias@email.com.br"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="flex basis-1/4 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="cep"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            CEP
+                          </FormLabel>
+                          <FormControl>
+                            <CepInputVariant
+                              placeholder="99999-999"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className="flex basis-1/4 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="cep"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          CEP
-                        </FormLabel>
-                        <FormControl>
-                          <CepInputVariant
-                            placeholder="99999-999"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
-                </div>
-              </div>
 
-              <div className="flex w-full gap-4">
-                <div className="flex flex-1 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="streetName"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Logradouro
-                        </FormLabel>
-                        <FormControl>
-                          <InputVariant
-                            placeholder="Avenida Presidente Getúlio Vargas"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
+                <div className="flex w-full gap-4">
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="streetName"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Logradouro
+                          </FormLabel>
+                          <FormControl>
+                            <InputVariant
+                              placeholder="Avenida Presidente Getúlio Vargas"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="flex basis-1/6 flex-col">
+                    <FormField
+                      control={userPerfilForm.control}
+                      name="houseNumber"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Número
+                          </FormLabel>
+                          <FormControl>
+                            <NumberOnlyInputVariant
+                              placeholder="9999"
+                              {...field}
+                              className="w-full"
+                            />
+                          </FormControl>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
                 </div>
-                <div className="flex basis-1/6 flex-col">
-                  <FormField
-                    control={userPerfilForm.control}
-                    name="houseNumber"
-                    render={({ field }) => (
-                      <FormItemWithSpacing labelSpacing="1">
-                        <FormLabel className="text-base text-blue-900">
-                          Número
-                        </FormLabel>
-                        <FormControl>
-                          <NumberOnlyInputVariant
-                            placeholder="9999"
-                            {...field}
-                            className="w-full"
-                          />
-                        </FormControl>
-                        <FormMessage className="text-xs" />
-                      </FormItemWithSpacing>
-                    )}
-                  />
-                </div>
-              </div>
 
-              <div className="flex w-full gap-4">
-                <div className="basis-1/8 flex flex-shrink-0 flex-col">
-                  <label className="text-blue-900">UF</label>
-                  <p className="truncate rounded border border-gray-300 p-2 text-blue-900">
-                    SP
-                  </p>
-                </div>
-                <div className="flex flex-1 flex-col truncate">
-                  <label className="text-blue-900">Cidade</label>
-                  <p className="rounded border border-gray-300 p-2 text-blue-900">
-                    São José do Vale do Rio Preto
-                  </p>
-                </div>
-                <div className="basis-3/8 flex flex-shrink-0 flex-col">
-                  <label className="text-blue-900">Tipo</label>
-                  <p className="rounded border border-gray-300 p-2 text-blue-900">
-                    Apartamento
-                  </p>
+                <div className="flex w-full gap-4">
+                  <div className="w-1/10 flex flex-col">
+                    <FormField
+                      name="state"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            UF
+                          </FormLabel>
+                          <Select
+                            value={selectedState}
+                            onValueChange={(value) => {
+                              setSelectedState(value)
+                              field.onChange(value)
+                            }}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="UF" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {states.map((state) => (
+                                <SelectItem key={state.id} value={state.sigla}>
+                                  {state.sigla}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <FormField
+                      name="city"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Cidade
+                          </FormLabel>
+                          <Select
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            disabled={!selectedState}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Selecione uma cidade" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {cities.map((city) => (
+                                <SelectItem
+                                  key={city.id}
+                                  value={city.nome.toString()}
+                                >
+                                  {city.nome}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
+                  <div className="w-3/8 flex flex-col">
+                    <FormField
+                      name="houseType"
+                      render={({ field }) => (
+                        <FormItemWithSpacing labelSpacing="1">
+                          <FormLabel className="text-base text-blue-900">
+                            Tipo de casa
+                          </FormLabel>
+                          <Select onValueChange={field.onChange}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Tipo de casa" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="house">Casa</SelectItem>
+                              <SelectItem value="apartment">
+                                Apartamento
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-xs" />
+                        </FormItemWithSpacing>
+                      )}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="flex w-full gap-2">
-              <button
-                className="flex flex-1 items-center justify-center rounded-xl bg-red-500 py-2 text-xl font-semibold text-slate-100 hover:bg-red-600"
-                onClick={() => setIsEditing(!isEditing)}
-              >
-                Cancelar
-              </button>
-              <button className="flex flex-1 items-center justify-center rounded-xl bg-green-400 py-2 text-xl font-semibold text-slate-100 hover:bg-green-500">
-                Concluir
-              </button>
-            </div>
-          </form>
-        </Form>
+              <div className="flex w-full gap-2">
+                <button
+                  type="button"
+                  className="flex flex-1 items-center justify-center rounded-xl bg-red-500 py-2 text-xl font-semibold text-slate-100 hover:bg-red-600"
+                  onClick={() => setIsEditing(false)}
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="flex flex-1 items-center justify-center rounded-xl bg-green-400 py-2 text-xl font-semibold text-slate-100 hover:bg-green-500"
+                >
+                  Concluir
+                </button>
+              </div>
+            </form>
+          </Form>
+        ) : (
+          <TutorInformations />
+        )}
       </div>
     </Dialog.Content>
-  ) : (
-    <TutorInformations isEditing={isEditing} setIsEditing={setIsEditing} />
   )
 }
