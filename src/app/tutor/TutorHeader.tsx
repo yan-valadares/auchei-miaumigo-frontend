@@ -30,7 +30,7 @@ export default function TutorHeader() {
           <Link
             key={item.name}
             href={item.path.replace('/*', '')}
-            className={`${isActive(item.path) ? 'underline hover:scale-110' : ''} `}
+            className={`${isActive(item.path) ? 'underline hover:scale-110' : 'hover:scale-110'} `}
           >
             {item.name}
           </Link>
