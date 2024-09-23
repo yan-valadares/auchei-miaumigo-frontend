@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Search } from 'lucide-react'
-import { parseAsInteger, useQueryState } from 'nuqs'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -142,7 +142,9 @@ const lostAnimalsFormSchema = z.object({
 type LostAnimalsFormData = z.infer<typeof lostAnimalsFormSchema>
 
 export default function LostAnimals() {
-  const [page, setPage] = useQueryState('page', parseAsInteger.withDefault(0))
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const pageIndex = Number(searchParams.get('page')) ?? 1
 
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
@@ -159,8 +161,8 @@ export default function LostAnimals() {
     console.log(values)
   }
 
-  function handlePaginate(page) {
-    setPage(page + 1)
+  function handlePaginate(pageIndex: number) {
+    router.push(`/lost-animals?page=${pageIndex}`)
   }
 
   return (
@@ -253,8 +255,8 @@ export default function LostAnimals() {
         <div className="mb-3 flex w-full items-center justify-end">
           <Pagination
             onPageChange={handlePaginate}
-            pageIndex={page}
-            totalCount={24}
+            pageIndex={pageIndex}
+            totalCount={120}
             perPage={12}
           />
         </div>
