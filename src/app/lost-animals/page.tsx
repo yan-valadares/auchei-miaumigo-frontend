@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Search } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -20,119 +20,9 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import LocationContext from '@/contexts/LocationContext'
+import { serverDevAPI } from '@/lib/axios'
 
 import TutorHeader from '../tutor/TutorHeader'
-
-const animals: LostAnimalProps[] = [
-  {
-    id: 1,
-    name: 'Felipe',
-    city: 'Campinas',
-    state: 'São Paulo',
-    gender: 'male',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1677545183884-421157b2da02?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 2,
-    name: 'Luna',
-    city: 'Copacabana',
-    state: 'Rio de Janeiro',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1452441271666-5d998aa2f6cc?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 3,
-    name: 'Simba',
-    city: 'Belo Horizonte',
-    state: 'Minas Gerais',
-    gender: 'male',
-    imageUrl:
-      'https://images.unsplash.com/photo-1472491235688-bdc81a63246e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 4,
-    name: 'Nala',
-    city: 'Salvador',
-    state: 'Bahia',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 5,
-    name: 'Max',
-    city: 'Fortaleza',
-    state: 'Ceará',
-    gender: 'male',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 6,
-    name: 'Mia',
-    city: 'Brasília',
-    state: 'Distrito Federal',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 7,
-    name: 'Leo',
-    city: 'Curitiba',
-    state: 'Paraná',
-    gender: 'male',
-    imageUrl:
-      'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 8,
-    name: 'Bella',
-    city: 'Manaus',
-    state: 'Amazonas',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 9,
-    name: 'Nala',
-    city: 'Salvador',
-    state: 'Bahia',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 10,
-    name: 'Max',
-    city: 'Fortaleza',
-    state: 'Ceará',
-    gender: 'male',
-    imageUrl:
-      'https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 11,
-    name: 'Mia',
-    city: 'Brasília',
-    state: 'Distrito Federal',
-    gender: 'female',
-    imageUrl:
-      'https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-  {
-    id: 12,
-    name: 'Leo',
-    city: 'Curitiba',
-    state: 'Paraná',
-    gender: 'male',
-    imageUrl:
-      'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  },
-]
 
 const lostAnimalsFormSchema = z.object({
   state: z.string().nullable(),
@@ -142,9 +32,23 @@ const lostAnimalsFormSchema = z.object({
 type LostAnimalsFormData = z.infer<typeof lostAnimalsFormSchema>
 
 export default function LostAnimals() {
+  const [animals, setAnimals] = useState<LostAnimalProps[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
-  const pageIndex = Number(searchParams.get('page')) ?? 1
+  const pageIndex = Number(searchParams.get('page')) ?? 0
+  const stateParams = searchParams.get('state') || ''
+  const cityParams = searchParams.get('city') || ''
+
+  useEffect(() => {
+    async function fetchAnimals() {
+      const response = await serverDevAPI.get(
+        `/lost-animals?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
+      )
+      console.log(response.data)
+      setAnimals(response.data)
+    }
+    fetchAnimals()
+  }, [pageIndex, stateParams, cityParams])
 
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
@@ -157,12 +61,14 @@ export default function LostAnimals() {
     },
   })
 
-  function onSubmit(values: LostAnimalsFormData) {
-    console.log(values)
+  function onSubmit({ state, city }: LostAnimalsFormData) {
+    router.push(
+      `/lost-animals?_page=${pageIndex}&_per_page=12&state=${state}&city=${city || ''}`,
+    )
   }
 
   function handlePaginate(pageIndex: number) {
-    router.push(`/lost-animals?page=${pageIndex}`)
+    router.push(`/lost-animals?page=${pageIndex}&_per_page=12`)
   }
 
   return (
@@ -186,6 +92,7 @@ export default function LostAnimals() {
                     onValueChange={(value) => {
                       setSelectedState(value)
                       field.onChange(value)
+                      lostAnimalsForm.setValue('city', null)
                     }}
                   >
                     <FormControl>
@@ -239,13 +146,17 @@ export default function LostAnimals() {
             </button>
           </form>
         </Form>
-        <div className="flex w-full flex-1 flex-wrap items-center justify-between">
+        <div
+          className={`flex w-full flex-1 flex-wrap items-start ${animals.length >= 4 ? 'justify-between' : 'gap-8'}`}
+        >
           {animals.map((animal) => (
             <LostAnimalCard
               key={animal.id}
               id={animal.id}
               name={animal.name}
               city={animal.city}
+              lastPlaceSeen={animal.lastPlaceSeen}
+              lostDate={new Date(animal.lostDate)}
               gender={animal.gender}
               state={animal.state}
               imageUrl={animal.imageUrl}
@@ -256,7 +167,7 @@ export default function LostAnimals() {
           <Pagination
             onPageChange={handlePaginate}
             pageIndex={pageIndex}
-            totalCount={120}
+            totalCount={12}
             perPage={12}
           />
         </div>

@@ -4,6 +4,8 @@ import { BsGenderFemale, BsGenderMale } from 'react-icons/bs'
 export interface LostAnimalProps {
   id: number
   name: string
+  lastPlaceSeen: string
+  lostDate: Date
   city: string
   state: string
   gender: 'male' | 'female'
