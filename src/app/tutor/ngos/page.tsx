@@ -7,9 +7,6 @@ import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import LostAnimalCard, {
-  type LostAnimalProps,
-} from '@/components/LostAnimalCard'
 import { Pagination } from '@/components/Pagination'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import {
@@ -22,17 +19,19 @@ import {
 import LocationContext from '@/contexts/LocationContext'
 import { serverDevAPI } from '@/lib/axios'
 
-import TutorHeader from '../tutor/TutorHeader'
+import TutorHeader from '../TutorHeader'
+import type { NgoProps } from './NgoCard'
+import NgoCard from './NgoCard'
 
-const lostAnimalsFormSchema = z.object({
+const ngosListFormSchema = z.object({
   state: z.string().nullable(),
   city: z.string().nullable(),
 })
 
-type LostAnimalsFormData = z.infer<typeof lostAnimalsFormSchema>
+type NgosListFormData = z.infer<typeof ngosListFormSchema>
 
-export default function LostAnimals() {
-  const [animals, setAnimals] = useState<LostAnimalProps[]>([])
+export default function NgosList() {
+  const [ngos, setNgos] = useState<NgoProps[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) ?? 0
@@ -40,34 +39,35 @@ export default function LostAnimals() {
   const cityParams = searchParams.get('city') || ''
 
   useEffect(() => {
-    async function fetchAnimals() {
+    async function fetchNgos() {
       const response = await serverDevAPI.get(
-        `/lost-animals?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
+        `/ngos?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
       )
-      setAnimals(response.data)
+      console.log(response.data)
+      setNgos(response.data)
     }
-    fetchAnimals()
+    fetchNgos()
   }, [pageIndex, stateParams, cityParams])
 
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
 
-  const lostAnimalsForm = useForm<LostAnimalsFormData>({
-    resolver: zodResolver(lostAnimalsFormSchema),
+  const lostAnimalsForm = useForm<NgosListFormData>({
+    resolver: zodResolver(ngosListFormSchema),
     defaultValues: {
       state: null,
       city: null,
     },
   })
 
-  function onSubmit({ state, city }: LostAnimalsFormData) {
+  function onSubmit({ state, city }: NgosListFormData) {
     router.push(
-      `/lost-animals?_page=${pageIndex}&_per_page=12&state=${state}&city=${city || ''}`,
+      `/tutor/ngos?_page=${pageIndex}&_per_page=12&state=${state}&city=${city || ''}`,
     )
   }
 
   function handlePaginate(pageIndex: number) {
-    router.push(`/lost-animals?page=${pageIndex}&_per_page=12`)
+    router.push(`/ngos?page=${pageIndex}&_per_page=12`)
   }
 
   return (
@@ -146,17 +146,18 @@ export default function LostAnimals() {
           </form>
         </Form>
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
-          {animals.map((animal) => (
-            <LostAnimalCard
-              key={animal.id}
-              id={animal.id}
-              name={animal.name}
-              city={animal.city}
-              lastPlaceSeen={animal.lastPlaceSeen}
-              lostDate={new Date(animal.lostDate)}
-              gender={animal.gender}
-              state={animal.state}
-              imageUrl={animal.imageUrl}
+          {ngos.map((ngo) => (
+            <NgoCard
+              key={ngo.id}
+              id={ngo.id}
+              name={ngo.name}
+              email={ngo.email}
+              phone={ngo.phone}
+              streetName={ngo.streetName}
+              state={ngo.state}
+              city={ngo.city}
+              number={ngo.number}
+              logo={ngo.logo}
             />
           ))}
         </div>

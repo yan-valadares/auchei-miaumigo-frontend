@@ -11,7 +11,7 @@ export default function TutorHeader() {
   const navItems = [
     { name: 'Home', path: '/tutor/home' },
     { name: 'Adotar animal', path: '/adopt' },
-    { name: 'ONGs', path: '/ongs' },
+    { name: 'ONGs', path: '/tutor//ngos' },
     { name: 'Animais perdidos', path: '/lost-animals' },
   ]
 

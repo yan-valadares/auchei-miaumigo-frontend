@@ -132,5 +132,119 @@
             "imageUrl":
               "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           }
+    ],
+    "ngos": [
+      {
+        "id": 1,
+        "name": "Cuidadogs",
+        "email": "cuidadogs@email.com.br",
+        "phone": "1938387567",
+        "streetName": "Avenida Francisco Glicério",
+        "state": "SP",
+        "city": "Campinas",
+        "number": 782,
+        "logo":
+          "https://th.bing.com/th/id/OIP.RrFwddKEs69XQW4dMUbVUwHaHa?rs=1&pid=ImgDetMain"
+      },
+      {
+        "id": 2,
+        "name": "Mundo dos pets adoráveis",
+        "email": "mundodospetsadoraveis@email.com.br",
+        "phone": "2138724356",
+        "streetName": "Rua Visconde de Pirajá",
+        "state": "RJ",
+        "city": "Rio de Janeiro",
+        "number": 301,
+        "logo":
+          "https://image.freepik.com/free-vector/pets-shop-logo-with-dog-cat-parrot-illustration_162786-75.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Pets para todos",
+        "email": "petsparatodos@email.com.br",
+        "phone": "1932526789",
+        "streetName": "Avenida Francisco Glicério",
+        "state": "SP",
+        "city": "Campinas",
+        "number": 456,
+        "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template_23-2148474792.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Amigos peludos",
+        "email": "amigospeludos@email.com.br",
+        "phone": "1137659823",
+        "streetName": "Rua Augusta",
+        "state": "SP",
+        "city": "São Paulo",
+        "number": 789,
+        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-design_23-2148485170.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Bicho Feliz",
+        "email": "bichofeliz@email.com.br",
+        "phone": "2138475623",
+        "streetName": "Avenida Atlântica",
+        "state": "RJ",
+        "city": "Rio de Janeiro",
+        "number": 1201,
+        "logo": "https://image.freepik.com/free-vector/cute-pet-logo-template_23-2148488782.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Amor de Pet",
+        "email": "amordepet@email.com.br",
+        "phone": "3138754692",
+        "streetName": "Avenida Afonso Pena",
+        "state": "MG",
+        "city": "Belo Horizonte",
+        "number": 582,
+        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-heart-illustration_162786-78.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Petlandia",
+        "email": "petlandia@email.com.br",
+        "phone": "4198237461",
+        "streetName": "Rua XV de Novembro",
+        "state": "PR",
+        "city": "Curitiba",
+        "number": 350,
+        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-template-design_23-2148488781.jpg"
+      },
+      {
+        "id": 8,
+        "name": "Mundo dos Animais",
+        "email": "mundodosanimais@email.com.br",
+        "phone": "7139826745",
+        "streetName": "Avenida Sete de Setembro",
+        "state": "BA",
+        "city": "Salvador",
+        "number": 99,
+        "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template-design_23-2148488780.jpg"
+      },
+      {
+        "id": 9,
+        "name": "Pet Station",
+        "email": "petstation@email.com.br",
+        "phone": "2198574632",
+        "streetName": "Rua Marquês de Abrantes",
+        "state": "RJ",
+        "city": "Cabo Frio",
+        "number": 267,
+        "logo": "https://image.freepik.com/free-vector/cute-pet-logo-design_23-2148488783.jpg"
+      },
+      {
+        "id": 10,
+        "name": "Seu Pet Aqui",
+        "email": "seupetaqui@email.com.br",
+        "phone": "3137289465",
+        "streetName": "Avenida do Contorno",
+        "state": "MG",
+        "city": "Belo Horizonte",
+        "number": 1503,
+        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-dog-cat_162786-77.jpg"
+      }
     ]
 }
