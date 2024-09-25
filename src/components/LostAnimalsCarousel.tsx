@@ -9,8 +9,7 @@ import {
 } from '@/components/ui/carousel'
 import { serverDevAPI } from '@/lib/axios'
 
-import type { LostAnimalProps } from './LostAnimalCard'
-import LostAnimalCard from './LostAnimalCard'
+import LostAnimalCard, { type LostAnimalProps } from './LostAnimalCard'
 
 export default function LostAnimalsCarousel() {
   const [animals, setAnimals] = useState<LostAnimalProps[]>([])
@@ -23,9 +22,7 @@ export default function LostAnimalsCarousel() {
     fetchAnimals()
   }, [])
 
-  console.log(animals)
-
-  return animals.length > 0 ? (
+  return (
     <Carousel
       opts={{
         align: 'start',
@@ -34,9 +31,18 @@ export default function LostAnimalsCarousel() {
       className="mt-4 w-full pl-4"
     >
       <CarouselContent>
-        {animals.map((animalList) => (
-          <CarouselItem key={animalList.lostAnimal.id} className="basis-1/4">
-            <LostAnimalCard lostAnimal={animalList.lostAnimal} />
+        {animals.map((animal) => (
+          <CarouselItem key={animal.id} className="basis-1/4">
+            <LostAnimalCard
+              id={animal.id}
+              name={animal.name}
+              lastPlaceSeen={animal.lastPlaceSeen}
+              lostDate={animal.lostDate}
+              city={animal.city}
+              gender={animal.gender}
+              state={animal.state}
+              imageUrl={animal.imageUrl}
+            />
           </CarouselItem>
         ))}
       </CarouselContent>
