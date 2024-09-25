@@ -49,9 +49,5 @@ export default function LostAnimalsCarousel() {
       <CarouselPrevious className="h-10 w-10 rounded-lg bg-orange-500" />
       <CarouselNext className="h-10 w-10 rounded-lg bg-orange-500" />
     </Carousel>
-  ) : (
-    <div>
-      <p>carregando</p>
-    </div>
   )
 }
