@@ -146,19 +146,8 @@ export default function NgosList() {
           </form>
         </Form>
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
-          {ngos.map((ngo) => (
-            <NgoCard
-              key={ngo.id}
-              id={ngo.id}
-              name={ngo.name}
-              email={ngo.email}
-              phone={ngo.phone}
-              streetName={ngo.streetName}
-              state={ngo.state}
-              city={ngo.city}
-              number={ngo.number}
-              logo={ngo.logo}
-            />
+          {ngos.map((ngoList) => (
+            <NgoCard key={ngoList.ngo.id} ngo={ngoList.ngo} />
           ))}
         </div>
         <div className="mb-3 flex w-full items-center justify-end">

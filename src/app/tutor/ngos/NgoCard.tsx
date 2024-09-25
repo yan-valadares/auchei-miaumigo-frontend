@@ -1,26 +1,28 @@
 import Image from 'next/image'
 
 export interface NgoProps {
-  id: number
-  name: string
-  email: string
-  phone: string
-  streetName: string
-  state: string
-  city: string
-  number: number
-  logo: string
+  ngo: {
+    id: number
+    name: string
+    email: string
+    phone: string
+    streetName: string
+    state: string
+    city: string
+    number: number
+    logo: string
+  }
 }
 
 function capitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
 
-export default function NgoCard({ name, state, city, logo }: NgoProps) {
+export default function NgoCard({ ngo }: NgoProps) {
   return (
     <div className="w-60 overflow-hidden rounded-xl border border-black">
       <Image
-        src={logo}
+        src={ngo.logo}
         width={240}
         height={240}
         unoptimized
@@ -29,10 +31,10 @@ export default function NgoCard({ name, state, city, logo }: NgoProps) {
       />
       <div className="p-4 text-center">
         <div className="flex items-center justify-center gap-2 truncate text-lg">
-          {name}
+          {ngo.name}
         </div>
         <p className="mt-2 text-orange-500">
-          {capitalizeFirstLetter(city)}, {state}
+          {capitalizeFirstLetter(ngo.city)}, {ngo.state}
         </p>
       </div>
     </div>

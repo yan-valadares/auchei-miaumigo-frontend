@@ -146,17 +146,10 @@ export default function LostAnimals() {
           </form>
         </Form>
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
-          {animals.map((animal) => (
+          {animals.map((lostAnimalsList) => (
             <LostAnimalCard
-              key={animal.id}
-              id={animal.id}
-              name={animal.name}
-              city={animal.city}
-              lastPlaceSeen={animal.lastPlaceSeen}
-              lostDate={new Date(animal.lostDate)}
-              gender={animal.gender}
-              state={animal.state}
-              imageUrl={animal.imageUrl}
+              key={lostAnimalsList.lostAnimal.id}
+              lostAnimal={lostAnimalsList.lostAnimal}
             />
           ))}
         </div>
