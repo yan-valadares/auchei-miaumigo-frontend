@@ -8,7 +8,7 @@ export default function NGOHeader() {
   const navItems = [
     { name: 'Home', path: '/ngo/home' },
     { name: 'Animais', path: '/animals' },
-    { name: 'Solicitações', path: '/requests' },
+    { name: 'Solicitações', path: '/ngo/requests' },
     { name: 'Animais perdidos', path: '/lost-animals' },
   ]
 
