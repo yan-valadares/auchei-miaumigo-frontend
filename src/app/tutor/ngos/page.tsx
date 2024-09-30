@@ -20,7 +20,7 @@ import LocationContext from '@/contexts/LocationContext'
 import { serverDevAPI } from '@/lib/axios'
 
 import TutorHeader from '../TutorHeader'
-import type { NgoProps } from './NgoCard'
+import type { Ngo } from './NgoCard'
 import NgoCard from './NgoCard'
 
 const ngosListFormSchema = z.object({
@@ -31,7 +31,7 @@ const ngosListFormSchema = z.object({
 type NgosListFormData = z.infer<typeof ngosListFormSchema>
 
 export default function NgosList() {
-  const [ngos, setNgos] = useState<NgoProps[]>([])
+  const [ngos, setNgos] = useState<Ngo[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) ?? 0
@@ -43,9 +43,11 @@ export default function NgosList() {
       const response = await serverDevAPI.get(
         `/ngos?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
       )
-      console.log(response.data)
       setNgos(response.data)
+
+      console.log(response.data)
     }
+
     fetchNgos()
   }, [pageIndex, stateParams, cityParams])
 
@@ -146,8 +148,8 @@ export default function NgosList() {
           </form>
         </Form>
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
-          {ngos.map((ngoList) => (
-            <NgoCard key={ngoList.ngo.id} ngo={ngoList.ngo} />
+          {ngos.map((ngo) => (
+            <NgoCard key={ngo.id} ngo={ngo} />
           ))}
         </div>
         <div className="mb-3 flex w-full items-center justify-end">

@@ -9,10 +9,11 @@ import {
 } from '@/components/ui/carousel'
 import { serverDevAPI } from '@/lib/axios'
 
-import LostAnimalCard, { type LostAnimalProps } from './LostAnimalCard'
+import type { LostAnimal } from './LostAnimalCard'
+import LostAnimalCard from './LostAnimalCard'
 
 export default function LostAnimalsCarousel() {
-  const [animals, setAnimals] = useState<LostAnimalProps[]>([])
+  const [animals, setAnimals] = useState<LostAnimal[]>([])
 
   useEffect(() => {
     async function fetchAnimals() {
@@ -33,16 +34,7 @@ export default function LostAnimalsCarousel() {
       <CarouselContent>
         {animals.map((animal) => (
           <CarouselItem key={animal.id} className="basis-1/4">
-            <LostAnimalCard
-              id={animal.id}
-              name={animal.name}
-              lastPlaceSeen={animal.lastPlaceSeen}
-              lostDate={animal.lostDate}
-              city={animal.city}
-              gender={animal.gender}
-              state={animal.state}
-              imageUrl={animal.imageUrl}
-            />
+            <LostAnimalCard lostAnimal={animal} />
           </CarouselItem>
         ))}
       </CarouselContent>

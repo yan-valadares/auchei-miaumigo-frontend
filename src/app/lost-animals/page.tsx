@@ -7,9 +7,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import LostAnimalCard, {
-  type LostAnimalProps,
-} from '@/components/LostAnimalCard'
+import LostAnimalCard, { type LostAnimal } from '@/components/LostAnimalCard'
 import { Pagination } from '@/components/Pagination'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import {
@@ -32,7 +30,7 @@ const lostAnimalsFormSchema = z.object({
 type LostAnimalsFormData = z.infer<typeof lostAnimalsFormSchema>
 
 export default function LostAnimals() {
-  const [animals, setAnimals] = useState<LostAnimalProps[]>([])
+  const [animals, setAnimals] = useState<LostAnimal[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) ?? 0
@@ -146,11 +144,8 @@ export default function LostAnimals() {
           </form>
         </Form>
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
-          {animals.map((lostAnimalsList) => (
-            <LostAnimalCard
-              key={lostAnimalsList.lostAnimal.id}
-              lostAnimal={lostAnimalsList.lostAnimal}
-            />
+          {animals.map((animal) => (
+            <LostAnimalCard key={animal.id} lostAnimal={animal} />
           ))}
         </div>
         <div className="mb-3 flex w-full items-center justify-end">

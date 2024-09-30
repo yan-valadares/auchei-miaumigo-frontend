@@ -1,17 +1,19 @@
 import Image from 'next/image'
 
+export interface Ngo {
+  id: number
+  name: string
+  email: string
+  phone: string
+  streetName: string
+  state: string
+  city: string
+  number: number
+  logo: string
+}
+
 export interface NgoProps {
-  ngo: {
-    id: number
-    name: string
-    email: string
-    phone: string
-    streetName: string
-    state: string
-    city: string
-    number: number
-    logo: string
-  }
+  ngo: Ngo
 }
 
 function capitalizeFirstLetter(str: string): string {
