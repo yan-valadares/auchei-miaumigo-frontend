@@ -18,14 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import { serverDevAPI } from '@/lib/axios'
 
 import NGOHeader from '../NGOHeader'
@@ -65,9 +57,6 @@ export default function LostAnimals() {
     status,
     tutorName,
   }: RequestsFormData) {
-    // router.push(
-    //   `/lost-animals?_page=${pageIndex}&_per_page=12&state=${state}&city=${city || ''}`,
-    // )
     console.log(animalName)
     console.log(species)
     console.log(status)
@@ -192,40 +181,90 @@ export default function LostAnimals() {
               type="submit"
               className="rounded-md border border-purple-800 bg-purple-500 px-3 text-white hover:bg-purple-600"
             >
-              <Search size={28} />
+              <Search size={24} />
             </button>
           </form>
         </Form>
         <div className="flex w-full flex-1 flex-wrap items-start gap-8">
-          <Table className="border-slate-700">
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-4 p-1" />
-                <TableHead className="w-44">Nome do animal</TableHead>
-                <TableHead className="w-60">Nome do tutor</TableHead>
-                <TableHead className="w-36">Espécie</TableHead>
-                <TableHead className="w-36">Status</TableHead>
-                <TableHead></TableHead>
-                <TableHead></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell className="w-4 p-1">
-                  <Search size={16} />
-                </TableCell>
-                <TableCell className="w-40">Paçoca</TableCell>
-                <TableCell className="w-56">Alexandrina Monteirodias</TableCell>
-                <TableCell className="w-32">Cachorro</TableCell>
-                <TableCell className="flex w-fit items-center justify-center gap-1">
-                  <Circle size={12} />
-                  Em análise
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <table className="mt-4 w-full overflow-hidden rounded-lg border border-gray-300 shadow-lg">
+            <thead className="bg-slate-200 text-gray-700">
+              <tr className="py-2">
+                <th className="w-44 p-2 text-center font-semibold">
+                  Nome do animal
+                </th>
+                <th className="w-72 text-center font-semibold">
+                  Nome do tutor
+                </th>
+                <th className="w-36 text-center font-semibold">Espécie</th>
+                <th className="w-36 text-center font-semibold">Status</th>
+                <th className="w-36 text-center font-semibold"></th>
+                <th className="w-36 text-center font-semibold"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="my-2 border-b border-gray-300">
+                <td className="w-44 py-1 text-center text-blue-600">Paçoca</td>
+                <td className="w-72 py-1 text-center text-blue-600">
+                  Alexandrina Monteirodias
+                </td>
+                <td className="w-36 py-1 text-center">Cachorro</td>
+                <td className="w-36 py-1 text-center">
+                  <div className="flex items-center justify-center gap-2 py-1">
+                    <Circle
+                      size={16}
+                      fill="#FBBF24"
+                      className="text-yellow-400"
+                    />
+                    Em análise
+                  </div>
+                </td>
+                <td className="w-36">
+                  <div className="flex items-center justify-center gap-1">
+                    <Check size={18} className="text-green-400" />
+                    Aprovar
+                  </div>
+                </td>
+                <td className="w-36">
+                  <div className="flex items-center justify-center gap-1">
+                    <X size={18} className="text-red-500" />
+                    Recusar
+                  </div>
+                </td>
+              </tr>
+
+              <tr className="my-2 border-b border-gray-300">
+                <td className="w-44 py-1 text-center text-blue-600">Paçoca</td>
+                <td className="w-72 py-1 text-center text-blue-600">
+                  Alexandrina Monteirodias
+                </td>
+                <td className="w-36 py-1 text-center">Cachorro</td>
+                <td className="w-36 py-1 text-center">
+                  <div className="flex items-center justify-center gap-2 py-1">
+                    <Circle
+                      size={16}
+                      fill="#FBBF24"
+                      className="text-yellow-400"
+                    />
+                    Em análise
+                  </div>
+                </td>
+                <td className="w-36">
+                  <div className="flex items-center justify-center gap-1">
+                    <Check size={18} className="text-green-400" />
+                    Aprovar
+                  </div>
+                </td>
+                <td className="w-36">
+                  <div className="flex items-center justify-center gap-1">
+                    <X size={18} className="text-red-500" />
+                    Recusar
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="mb-3 flex w-full">
+        <div className="mb-3 flex w-full justify-end">
           <Pagination
             onPageChange={handlePaginate}
             pageIndex={pageIndex}
