@@ -246,5 +246,142 @@
         "number": 1503,
         "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-dog-cat_162786-77.jpg"
       }
+    ],
+    "requests": [
+      {
+        "requestId": 1,
+        "animalId": 1,
+        "tutorId": 1,
+        "animalName": "Paçoca",
+        "tutorName": "Alexandrina Monteirodias",
+        "species": "dog",
+        "status": "analysing"
+      },
+      {
+        "requestId": 2,
+        "animalId": 2,
+        "tutorId": 2,
+        "animalName": "Bolinha",
+        "tutorName": "Carlos Silva",
+        "species": "cat",
+        "status": "approved"
+      },
+      {
+        "requestId": 3,
+        "animalId": 3,
+        "tutorId": 3,
+        "animalName": "Rex",
+        "tutorName": "Fernanda Oliveira",
+        "species": "dog",
+        "status": "refused"
+      },
+      {
+        "requestId": 4,
+        "animalId": 4,
+        "tutorId": 4,
+        "animalName": "Miau",
+        "tutorName": "João Pereira",
+        "species": "cat",
+        "status": "analysing"
+      },
+      {
+        "requestId": 5,
+        "animalId": 5,
+        "tutorId": 5,
+        "animalName": "Fido",
+        "tutorName": "Mariana Costa",
+        "species": "dog",
+        "status": "approved"
+      },
+      {
+        "requestId": 6,
+        "animalId": 6,
+        "tutorId": 6,
+        "animalName": "Whiskers",
+        "tutorName": "Roberto Santos",
+        "species": "cat",
+        "status": "analysing"
+      },
+      {
+        "requestId": 7,
+        "animalId": 7,
+        "tutorId": 7,
+        "animalName": "Bingo",
+        "tutorName": "Ana Paula",
+        "species": "dog",
+        "status": "refused"
+      },
+      {
+        "requestId": 8,
+        "animalId": 8,
+        "tutorId": 8,
+        "animalName": "Luna",
+        "tutorName": "Diego Almeida",
+        "species": "cat",
+        "status": "approved"
+      },
+      {
+        "requestId": 9,
+        "animalId": 9,
+        "tutorId": 9,
+        "animalName": "Thor",
+        "tutorName": "Patrícia Lima",
+        "species": "dog",
+        "status": "analysing"
+      },
+      {
+        "requestId": 10,
+        "animalId": 10,
+        "tutorId": 10,
+        "animalName": "Mimi",
+        "tutorName": "Samuel Ribeiro",
+        "species": "cat",
+        "status": "approved"
+      },
+      {
+        "requestId": 11,
+        "animalId": 11,
+        "tutorId": 11,
+        "animalName": "Max",
+        "tutorName": "Cláudia Ferreira",
+        "species": "dog",
+        "status": "refused"
+      },
+      {
+        "requestId": 12,
+        "animalId": 12,
+        "tutorId": 12,
+        "animalName": "Bella",
+        "tutorName": "Eduardo Martins",
+        "species": "cat",
+        "status": "analysing"
+      },
+      {
+        "requestId": 13,
+        "animalId": 13,
+        "tutorId": 13,
+        "animalName": "Charlie",
+        "tutorName": "Tatiane Souza",
+        "species": "dog",
+        "status": "approved"
+      },
+      {
+        "requestId": 14,
+        "animalId": 14,
+        "tutorId": 14,
+        "animalName": "Zizi",
+        "tutorName": "Felipe Rocha",
+        "species": "cat",
+        "status": "refused"
+      },
+      {
+        "requestId": 15,
+        "animalId": 15,
+        "tutorId": 15,
+        "animalName": "Scooby",
+        "tutorName": "Juliana Nascimento",
+        "species": "dog",
+        "status": "analysing"
+      }
     ]
 }
