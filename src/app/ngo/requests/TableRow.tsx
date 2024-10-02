@@ -1,7 +1,10 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import { Check, Circle, X } from 'lucide-react'
 import { useState } from 'react'
 
 import { serverDevAPI } from '@/lib/axios'
+
+import TutorPerfilDialogAdmView from './TutorPerfilDialogAdmView'
 
 export interface Request {
   id: number
@@ -48,7 +51,16 @@ export function TableRow({ request }: TableRowProps) {
         {request.animalName}
       </td>
       <td className="w-72 py-1 text-center text-blue-600">
-        {request.tutorName}
+        <Dialog.Root>
+          <Dialog.Trigger className="h-fit w-fit">
+            {request.tutorName}
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+            <TutorPerfilDialogAdmView tutorId={request.tutorId} />
+          </Dialog.Portal>
+        </Dialog.Root>
       </td>
       <td className="w-36 py-1 text-center">
         {request.species === 'dog' ? <span>Cachorro</span> : <span>Gato</span>}
