@@ -1,7 +1,10 @@
 import { Check, Circle, X } from 'lucide-react'
+import { useState } from 'react'
+
+import { serverDevAPI } from '@/lib/axios'
 
 export interface Request {
-  requestId: number
+  id: number
   animalId: number
   tutorId: number
   animalName: string
@@ -15,6 +18,30 @@ interface TableRowProps {
 }
 
 export function TableRow({ request }: TableRowProps) {
+  const [currentStatus, setCurrentStatus] = useState(request.status)
+
+  async function handleRefuseRequest() {
+    try {
+      await serverDevAPI.patch(`/requests/${request.id}`, {
+        status: 'refused',
+      })
+      setCurrentStatus('refused')
+    } catch (error) {
+      console.error('Failed to refuse the request', error)
+    }
+  }
+
+  async function handleApproveRequest() {
+    try {
+      await serverDevAPI.patch(`/requests/${request.id}`, {
+        status: 'approved',
+      })
+      setCurrentStatus('approved')
+    } catch (error) {
+      console.error('Failed to approve the request', error)
+    }
+  }
+
   return (
     <tr className="my-2 border-b border-gray-300">
       <td className="w-44 py-1 text-center text-blue-600">
@@ -28,19 +55,19 @@ export function TableRow({ request }: TableRowProps) {
       </td>
       <td className="w-36 py-1 text-center">
         <div className="flex items-center justify-center py-1">
-          {request.status === 'analysing' && (
+          {currentStatus === 'analysing' && (
             <>
               <Circle size={16} fill="#FBBF24" className="text-yellow-400" />
               <span className="ml-2 min-w-20">Em análise</span>{' '}
             </>
           )}
-          {request.status === 'refused' && (
+          {currentStatus === 'refused' && (
             <>
               <Circle size={16} fill="#EF4444" className="text-red-400" />
               <span className="ml-2 min-w-20">Recusado</span>{' '}
             </>
           )}
-          {request.status === 'approved' && (
+          {currentStatus === 'approved' && (
             <>
               <Circle size={16} fill="#22C55E" className="text-green-400" />
               <span className="ml-2 min-w-20">Aprovado</span>{' '}
@@ -51,7 +78,8 @@ export function TableRow({ request }: TableRowProps) {
       <td className="w-36">
         <button
           className="flex w-36 items-center justify-center gap-1 disabled:cursor-not-allowed disabled:opacity-60"
-          disabled={request.status !== 'analysing'}
+          onClick={() => handleApproveRequest()}
+          disabled={currentStatus !== 'analysing'}
         >
           <Check size={18} className="text-green-400" />
           Aprovar
@@ -60,7 +88,8 @@ export function TableRow({ request }: TableRowProps) {
       <td className="w-36">
         <button
           className="flex w-36 items-center justify-center gap-1 disabled:cursor-not-allowed disabled:opacity-60"
-          disabled={request.status !== 'analysing'}
+          onClick={() => handleRefuseRequest()}
+          disabled={currentStatus !== 'analysing'}
         >
           <X size={18} className="text-red-500" />
           Recusar

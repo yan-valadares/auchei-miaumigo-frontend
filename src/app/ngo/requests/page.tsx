@@ -66,7 +66,7 @@ export default function Requests() {
             </thead>
             <tbody>
               {requests.map((request) => (
-                <TableRow key={request.requestId} request={request} />
+                <TableRow key={request.id} request={request} />
               ))}
             </tbody>
           </table>

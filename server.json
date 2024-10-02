@@ -1,405 +1,391 @@
 {
-    "lost-animals": [
-        {
-            "id": 1,
-            "name": "Felipe",
-            "city": "Campinas",
-            "lastPlaceSeen": "Rodoviária de Campinas",
-            "lostDate": "2024-09-18T18:08:38.628Z",
-            "state": "SP",
-            "gender": "male",
-            "imageUrl":
-              "https://plus.unsplash.com/premium_photo-1677545183884-421157b2da02?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 2,
-            "name": "Lucas",
-            "city": "Rio de Janeiro",
-            "lastPlaceSeen": "Praia de Copacabana",
-            "lostDate": "2024-09-17T12:04:22.628Z",
-            "state": "RJ",
-            "gender": "male",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1452441271666-5d998aa2f6cc?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 3,
-            "name": "Carla",
-            "city": "São Paulo",
-            "lastPlaceSeen": "Parque Ibirapuera",
-            "lostDate": "2024-09-16T14:35:45.228Z",
-            "state": "SP",
-            "gender": "female",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1472491235688-bdc81a63246e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 4,
-            "name": "João",
-            "city": "Brasília",
-            "lastPlaceSeen": "Esplanada dos Ministérios",
-            "lostDate": "2024-09-15T11:22:30.628Z",
-            "state": "Distrito Federal",
-            "gender": "male",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 5,
-            "name": "Beatriz",
-            "city": "Fortaleza",
-            "lastPlaceSeen": "Praia do Futuro",
-            "lostDate": "2024-09-14T09:48:20.128Z",
-            "state": "Ceará",
-            "gender": "female",
-            "imageUrl":
-              "https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 6,
-            "name": "Mariana",
-            "city": "Curitiba",
-            "lastPlaceSeen": "Jardim Botânico",
-            "lostDate": "2024-09-13T16:32:45.928Z",
-            "state": "PR",
-            "gender": "female",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 7,
-            "name": "Pedro",
-            "city": "Porto Alegre",
-            "lastPlaceSeen": "Mercado Público",
-            "lostDate": "2024-09-12T10:58:12.528Z",
-            "state": "RS",
-            "gender": "male",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 8,
-            "name": "Ana",
-            "city": "Salvador",
-            "lastPlaceSeen": "Pelourinho",
-            "lostDate": "2024-09-11T14:12:43.428Z",
-            "state": "BA",
-            "gender": "female",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 9,
-            "name": "Mateus",
-            "city": "Manaus",
-            "lastPlaceSeen": "Teatro Amazonas",
-            "lostDate": "2024-09-10T19:30:10.828Z",
-            "state": "AM",
-            "gender": "male",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 10,
-            "name": "Julia",
-            "city": "Recife",
-            "lastPlaceSeen": "Marco Zero",
-            "lostDate": "2024-09-09T08:20:15.628Z",
-            "state": "PE",
-            "gender": "female",
-            "imageUrl":
-              "https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 11,
-            "name": "Tiago",
-            "city": "Florianópolis",
-            "lastPlaceSeen": "Praia da Joaquina",
-            "lostDate": "2024-09-08T17:15:05.628Z",
-            "state": "SC",
-            "gender": "male",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          },
-          {
-            "id": 12,
-            "name": "Sofia",
-            "city": "Belém",
-            "lastPlaceSeen": "Ver-o-Peso",
-            "lostDate": "2024-09-07T12:32:15.628Z",
-            "state": "PA",
-            "gender": "female",
-            "imageUrl":
-              "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
-    ],
-    "ngos": [
-      {
-        "id": 1,
-        "name": "Cuidadogs",
-        "email": "cuidadogs@email.com.br",
-        "phone": "1938387567",
-        "streetName": "Avenida Francisco Glicério",
-        "state": "SP",
-        "city": "Campinas",
-        "number": 782,
-        "logo":
-          "https://th.bing.com/th/id/OIP.RrFwddKEs69XQW4dMUbVUwHaHa?rs=1&pid=ImgDetMain"
-      },
-      {
-        "id": 2,
-        "name": "Mundo dos pets adoráveis",
-        "email": "mundodospetsadoraveis@email.com.br",
-        "phone": "2138724356",
-        "streetName": "Rua Visconde de Pirajá",
-        "state": "RJ",
-        "city": "Rio de Janeiro",
-        "number": 301,
-        "logo":
-          "https://image.freepik.com/free-vector/pets-shop-logo-with-dog-cat-parrot-illustration_162786-75.jpg"
-      },
-      {
-        "id": 3,
-        "name": "Pets para todos",
-        "email": "petsparatodos@email.com.br",
-        "phone": "1932526789",
-        "streetName": "Avenida Francisco Glicério",
-        "state": "SP",
-        "city": "Campinas",
-        "number": 456,
-        "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template_23-2148474792.jpg"
-      },
-      {
-        "id": 4,
-        "name": "Amigos peludos",
-        "email": "amigospeludos@email.com.br",
-        "phone": "1137659823",
-        "streetName": "Rua Augusta",
-        "state": "SP",
-        "city": "São Paulo",
-        "number": 789,
-        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-design_23-2148485170.jpg"
-      },
-      {
-        "id": 5,
-        "name": "Bicho Feliz",
-        "email": "bichofeliz@email.com.br",
-        "phone": "2138475623",
-        "streetName": "Avenida Atlântica",
-        "state": "RJ",
-        "city": "Rio de Janeiro",
-        "number": 1201,
-        "logo": "https://image.freepik.com/free-vector/cute-pet-logo-template_23-2148488782.jpg"
-      },
-      {
-        "id": 6,
-        "name": "Amor de Pet",
-        "email": "amordepet@email.com.br",
-        "phone": "3138754692",
-        "streetName": "Avenida Afonso Pena",
-        "state": "MG",
-        "city": "Belo Horizonte",
-        "number": 582,
-        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-heart-illustration_162786-78.jpg"
-      },
-      {
-        "id": 7,
-        "name": "Petlandia",
-        "email": "petlandia@email.com.br",
-        "phone": "4198237461",
-        "streetName": "Rua XV de Novembro",
-        "state": "PR",
-        "city": "Curitiba",
-        "number": 350,
-        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-template-design_23-2148488781.jpg"
-      },
-      {
-        "id": 8,
-        "name": "Mundo dos Animais",
-        "email": "mundodosanimais@email.com.br",
-        "phone": "7139826745",
-        "streetName": "Avenida Sete de Setembro",
-        "state": "BA",
-        "city": "Salvador",
-        "number": 99,
-        "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template-design_23-2148488780.jpg"
-      },
-      {
-        "id": 9,
-        "name": "Pet Station",
-        "email": "petstation@email.com.br",
-        "phone": "2198574632",
-        "streetName": "Rua Marquês de Abrantes",
-        "state": "RJ",
-        "city": "Cabo Frio",
-        "number": 267,
-        "logo": "https://image.freepik.com/free-vector/cute-pet-logo-design_23-2148488783.jpg"
-      },
-      {
-        "id": 10,
-        "name": "Seu Pet Aqui",
-        "email": "seupetaqui@email.com.br",
-        "phone": "3137289465",
-        "streetName": "Avenida do Contorno",
-        "state": "MG",
-        "city": "Belo Horizonte",
-        "number": 1503,
-        "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-dog-cat_162786-77.jpg"
-      }
-    ],
-    "requests": [
-      {
-        "requestId": 1,
-        "animalId": 1,
-        "tutorId": 1,
-        "animalName": "Paçoca",
-        "tutorName": "Alexandrina Monteirodias",
-        "species": "dog",
-        "status": "analysing"
-      },
-      {
-        "requestId": 2,
-        "animalId": 2,
-        "tutorId": 2,
-        "animalName": "Bolinha",
-        "tutorName": "Carlos Silva",
-        "species": "cat",
-        "status": "approved"
-      },
-      {
-        "requestId": 3,
-        "animalId": 3,
-        "tutorId": 3,
-        "animalName": "Rex",
-        "tutorName": "Fernanda Oliveira",
-        "species": "dog",
-        "status": "refused"
-      },
-      {
-        "requestId": 4,
-        "animalId": 4,
-        "tutorId": 4,
-        "animalName": "Miau",
-        "tutorName": "João Pereira",
-        "species": "cat",
-        "status": "analysing"
-      },
-      {
-        "requestId": 5,
-        "animalId": 5,
-        "tutorId": 5,
-        "animalName": "Fido",
-        "tutorName": "Mariana Costa",
-        "species": "dog",
-        "status": "approved"
-      },
-      {
-        "requestId": 6,
-        "animalId": 6,
-        "tutorId": 6,
-        "animalName": "Whiskers",
-        "tutorName": "Roberto Santos",
-        "species": "cat",
-        "status": "analysing"
-      },
-      {
-        "requestId": 7,
-        "animalId": 7,
-        "tutorId": 7,
-        "animalName": "Bingo",
-        "tutorName": "Ana Paula",
-        "species": "dog",
-        "status": "refused"
-      },
-      {
-        "requestId": 8,
-        "animalId": 8,
-        "tutorId": 8,
-        "animalName": "Luna",
-        "tutorName": "Diego Almeida",
-        "species": "cat",
-        "status": "approved"
-      },
-      {
-        "requestId": 9,
-        "animalId": 9,
-        "tutorId": 9,
-        "animalName": "Thor",
-        "tutorName": "Patrícia Lima",
-        "species": "dog",
-        "status": "analysing"
-      },
-      {
-        "requestId": 10,
-        "animalId": 10,
-        "tutorId": 10,
-        "animalName": "Mimi",
-        "tutorName": "Samuel Ribeiro",
-        "species": "cat",
-        "status": "approved"
-      },
-      {
-        "requestId": 11,
-        "animalId": 11,
-        "tutorId": 11,
-        "animalName": "Max",
-        "tutorName": "Cláudia Ferreira",
-        "species": "dog",
-        "status": "refused"
-      },
-      {
-        "requestId": 12,
-        "animalId": 12,
-        "tutorId": 12,
-        "animalName": "Bella",
-        "tutorName": "Eduardo Martins",
-        "species": "cat",
-        "status": "analysing"
-      },
-      {
-        "requestId": 13,
-        "animalId": 13,
-        "tutorId": 13,
-        "animalName": "Charlie",
-        "tutorName": "Tatiane Souza",
-        "species": "dog",
-        "status": "approved"
-      },
-      {
-        "requestId": 14,
-        "animalId": 14,
-        "tutorId": 14,
-        "animalName": "Zizi",
-        "tutorName": "Felipe Rocha",
-        "species": "cat",
-        "status": "refused"
-      },
-      {
-        "requestId": 15,
-        "animalId": 15,
-        "tutorId": 15,
-        "animalName": "Scooby",
-        "tutorName": "Juliana Nascimento",
-        "species": "dog",
-        "status": "analysing"
-      },
-      {
-        "requestId": 16,
-        "animalId": 16,
-        "tutorId": 16,
-        "animalName": "Bidu",
-        "tutorName": "Lucas Mendes",
-        "species": "dog",
-        "status": "refused"
-      },
-      {
-        "requestId": 17,
-        "animalId": 17,
-        "tutorId": 17,
-        "animalName": "Lola",
-        "tutorName": "Ana Paula Oliveira",
-        "species": "cat",
-        "status": "approved"
-      }
-    ]
+  "lost-animals": [
+    {
+      "id": "1",
+      "name": "Felipe",
+      "city": "Campinas",
+      "lastPlaceSeen": "Rodoviária de Campinas",
+      "lostDate": "2024-09-18T18:08:38.628Z",
+      "state": "SP",
+      "gender": "male",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1677545183884-421157b2da02?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "2",
+      "name": "Lucas",
+      "city": "Rio de Janeiro",
+      "lastPlaceSeen": "Praia de Copacabana",
+      "lostDate": "2024-09-17T12:04:22.628Z",
+      "state": "RJ",
+      "gender": "male",
+      "imageUrl": "https://images.unsplash.com/photo-1452441271666-5d998aa2f6cc?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "3",
+      "name": "Carla",
+      "city": "São Paulo",
+      "lastPlaceSeen": "Parque Ibirapuera",
+      "lostDate": "2024-09-16T14:35:45.228Z",
+      "state": "SP",
+      "gender": "female",
+      "imageUrl": "https://images.unsplash.com/photo-1472491235688-bdc81a63246e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "4",
+      "name": "João",
+      "city": "Brasília",
+      "lastPlaceSeen": "Esplanada dos Ministérios",
+      "lostDate": "2024-09-15T11:22:30.628Z",
+      "state": "Distrito Federal",
+      "gender": "male",
+      "imageUrl": "https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "5",
+      "name": "Beatriz",
+      "city": "Fortaleza",
+      "lastPlaceSeen": "Praia do Futuro",
+      "lostDate": "2024-09-14T09:48:20.128Z",
+      "state": "Ceará",
+      "gender": "female",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "6",
+      "name": "Mariana",
+      "city": "Curitiba",
+      "lastPlaceSeen": "Jardim Botânico",
+      "lostDate": "2024-09-13T16:32:45.928Z",
+      "state": "PR",
+      "gender": "female",
+      "imageUrl": "https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "7",
+      "name": "Pedro",
+      "city": "Porto Alegre",
+      "lastPlaceSeen": "Mercado Público",
+      "lostDate": "2024-09-12T10:58:12.528Z",
+      "state": "RS",
+      "gender": "male",
+      "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "8",
+      "name": "Ana",
+      "city": "Salvador",
+      "lastPlaceSeen": "Pelourinho",
+      "lostDate": "2024-09-11T14:12:43.428Z",
+      "state": "BA",
+      "gender": "female",
+      "imageUrl": "https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "9",
+      "name": "Mateus",
+      "city": "Manaus",
+      "lastPlaceSeen": "Teatro Amazonas",
+      "lostDate": "2024-09-10T19:30:10.828Z",
+      "state": "AM",
+      "gender": "male",
+      "imageUrl": "https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "10",
+      "name": "Julia",
+      "city": "Recife",
+      "lastPlaceSeen": "Marco Zero",
+      "lostDate": "2024-09-09T08:20:15.628Z",
+      "state": "PE",
+      "gender": "female",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1667673941713-ad4d4751c93b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "11",
+      "name": "Tiago",
+      "city": "Florianópolis",
+      "lastPlaceSeen": "Praia da Joaquina",
+      "lostDate": "2024-09-08T17:15:05.628Z",
+      "state": "SC",
+      "gender": "male",
+      "imageUrl": "https://images.unsplash.com/photo-1422565096762-bdb997a56a84?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    },
+    {
+      "id": "12",
+      "name": "Sofia",
+      "city": "Belém",
+      "lastPlaceSeen": "Ver-o-Peso",
+      "lostDate": "2024-09-07T12:32:15.628Z",
+      "state": "PA",
+      "gender": "female",
+      "imageUrl": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1443&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
+  ],
+  "ngos": [
+    {
+      "id": "1",
+      "name": "Cuidadogs",
+      "email": "cuidadogs@email.com.br",
+      "phone": "1938387567",
+      "streetName": "Avenida Francisco Glicério",
+      "state": "SP",
+      "city": "Campinas",
+      "number": 782,
+      "logo": "https://th.bing.com/th/id/OIP.RrFwddKEs69XQW4dMUbVUwHaHa?rs=1&pid=ImgDetMain"
+    },
+    {
+      "id": "2",
+      "name": "Mundo dos pets adoráveis",
+      "email": "mundodospetsadoraveis@email.com.br",
+      "phone": "2138724356",
+      "streetName": "Rua Visconde de Pirajá",
+      "state": "RJ",
+      "city": "Rio de Janeiro",
+      "number": 301,
+      "logo": "https://image.freepik.com/free-vector/pets-shop-logo-with-dog-cat-parrot-illustration_162786-75.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Pets para todos",
+      "email": "petsparatodos@email.com.br",
+      "phone": "1932526789",
+      "streetName": "Avenida Francisco Glicério",
+      "state": "SP",
+      "city": "Campinas",
+      "number": 456,
+      "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template_23-2148474792.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Amigos peludos",
+      "email": "amigospeludos@email.com.br",
+      "phone": "1137659823",
+      "streetName": "Rua Augusta",
+      "state": "SP",
+      "city": "São Paulo",
+      "number": 789,
+      "logo": "https://image.freepik.com/free-vector/pet-shop-logo-design_23-2148485170.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Bicho Feliz",
+      "email": "bichofeliz@email.com.br",
+      "phone": "2138475623",
+      "streetName": "Avenida Atlântica",
+      "state": "RJ",
+      "city": "Rio de Janeiro",
+      "number": 1201,
+      "logo": "https://image.freepik.com/free-vector/cute-pet-logo-template_23-2148488782.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Amor de Pet",
+      "email": "amordepet@email.com.br",
+      "phone": "3138754692",
+      "streetName": "Avenida Afonso Pena",
+      "state": "MG",
+      "city": "Belo Horizonte",
+      "number": 582,
+      "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-heart-illustration_162786-78.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Petlandia",
+      "email": "petlandia@email.com.br",
+      "phone": "4198237461",
+      "streetName": "Rua XV de Novembro",
+      "state": "PR",
+      "city": "Curitiba",
+      "number": 350,
+      "logo": "https://image.freepik.com/free-vector/pet-shop-logo-template-design_23-2148488781.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Mundo dos Animais",
+      "email": "mundodosanimais@email.com.br",
+      "phone": "7139826745",
+      "streetName": "Avenida Sete de Setembro",
+      "state": "BA",
+      "city": "Salvador",
+      "number": 99,
+      "logo": "https://image.freepik.com/free-vector/dog-pet-shop-logo-template-design_23-2148488780.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Pet Station",
+      "email": "petstation@email.com.br",
+      "phone": "2198574632",
+      "streetName": "Rua Marquês de Abrantes",
+      "state": "RJ",
+      "city": "Cabo Frio",
+      "number": 267,
+      "logo": "https://image.freepik.com/free-vector/cute-pet-logo-design_23-2148488783.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Seu Pet Aqui",
+      "email": "seupetaqui@email.com.br",
+      "phone": "3137289465",
+      "streetName": "Avenida do Contorno",
+      "state": "MG",
+      "city": "Belo Horizonte",
+      "number": 1503,
+      "logo": "https://image.freepik.com/free-vector/pet-shop-logo-with-dog-cat_162786-77.jpg"
+    }
+  ],
+  "requests": [
+    {
+      "id": "1",
+      "animalId": 1,
+      "tutorId": 1,
+      "animalName": "Paçoca",
+      "tutorName": "Alexandrina Monteirodias",
+      "species": "dog",
+      "status": "refused"
+    },
+    {
+      "id": "2",
+      "animalId": 2,
+      "tutorId": 2,
+      "animalName": "Bolinha",
+      "tutorName": "Carlos Silva",
+      "species": "cat",
+      "status": "refused"
+    },
+    {
+      "id": "3",
+      "animalId": 3,
+      "tutorId": 3,
+      "animalName": "Rex",
+      "tutorName": "Fernanda Oliveira",
+      "species": "dog",
+      "status": "refused"
+    },
+    {
+      "id": "4",
+      "animalId": 4,
+      "tutorId": 4,
+      "animalName": "Miau",
+      "tutorName": "João Pereira",
+      "species": "cat",
+      "status": "approved"
+    },
+    {
+      "id": "5",
+      "animalId": 5,
+      "tutorId": 5,
+      "animalName": "Fido",
+      "tutorName": "Mariana Costa",
+      "species": "dog",
+      "status": "approved"
+    },
+    {
+      "id": "6",
+      "animalId": 6,
+      "tutorId": 6,
+      "animalName": "Whiskers",
+      "tutorName": "Roberto Santos",
+      "species": "cat",
+      "status": "refused"
+    },
+    {
+      "id": "7",
+      "animalId": 7,
+      "tutorId": 7,
+      "animalName": "Bingo",
+      "tutorName": "Ana Paula",
+      "species": "dog",
+      "status": "approved"
+    },
+    {
+      "id": "8",
+      "animalId": 8,
+      "tutorId": 8,
+      "animalName": "Luna",
+      "tutorName": "Diego Almeida",
+      "species": "cat",
+      "status": "analysing"
+    },
+    {
+      "id": "9",
+      "animalId": 9,
+      "tutorId": 9,
+      "animalName": "Thor",
+      "tutorName": "Patrícia Lima",
+      "species": "dog",
+      "status": "refused"
+    },
+    {
+      "id": "10",
+      "animalId": 10,
+      "tutorId": 10,
+      "animalName": "Mimi",
+      "tutorName": "Samuel Ribeiro",
+      "species": "cat",
+      "status": "analysing"
+    },
+    {
+      "id": "11",
+      "animalId": 11,
+      "tutorId": 11,
+      "animalName": "Max",
+      "tutorName": "Cláudia Ferreira",
+      "species": "dog",
+      "status": "analysing"
+    },
+    {
+      "id": "12",
+      "animalId": 12,
+      "tutorId": 12,
+      "animalName": "Bella",
+      "tutorName": "Eduardo Martins",
+      "species": "cat",
+      "status": "approved"
+    },
+    {
+      "id": "13",
+      "animalId": 13,
+      "tutorId": 13,
+      "animalName": "Charlie",
+      "tutorName": "Tatiane Souza",
+      "species": "dog",
+      "status": "analysing"
+    },
+    {
+      "id": "14",
+      "animalId": 14,
+      "tutorId": 14,
+      "animalName": "Zizi",
+      "tutorName": "Felipe Rocha",
+      "species": "cat",
+      "status": "analysing"
+    },
+    {
+      "id": "15",
+      "animalId": 15,
+      "tutorId": 15,
+      "animalName": "Scooby",
+      "tutorName": "Juliana Nascimento",
+      "species": "dog",
+      "status": "refused"
+    },
+    {
+      "id": "16",
+      "animalId": 16,
+      "tutorId": 16,
+      "animalName": "Bidu",
+      "tutorName": "Lucas Mendes",
+      "species": "dog",
+      "status": "analysing"
+    },
+    {
+      "id": "17",
+      "animalId": 17,
+      "tutorId": 17,
+      "animalName": "Lola",
+      "tutorName": "Ana Paula Oliveira",
+      "species": "cat",
+      "status": "refused"
+    }
+  ]
 }
