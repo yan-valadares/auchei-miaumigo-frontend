@@ -15,19 +15,29 @@ export default function Requests() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) ?? 0
+  const animalNameParams = searchParams.get('animalName') || ''
+  const tutorNameParams = searchParams.get('tutorName') || ''
+  const speciesParams = searchParams.get('species') || ''
+  const statusParams = searchParams.get('status') || ''
 
   useEffect(() => {
     async function fetchRequest() {
       const response = await serverDevAPI.get(
-        `/requests?_page=${pageIndex}&_per_page=12`,
+        `/requests?_page=${pageIndex}&_per_page=17&animalName=${animalNameParams}&tutorName=${tutorNameParams}&species=${speciesParams}&status=${statusParams}`,
       )
       setRequests(response.data)
     }
     fetchRequest()
-  }, [pageIndex])
+  }, [
+    pageIndex,
+    animalNameParams,
+    tutorNameParams,
+    speciesParams,
+    statusParams,
+  ])
 
   function handlePaginate(pageIndex: number) {
-    router.push(`/lost-animals?page=${pageIndex}&_per_page=12`)
+    router.push(`/requests?page=${pageIndex}&_per_page=17`)
   }
 
   return (

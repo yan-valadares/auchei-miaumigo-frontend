@@ -1,5 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Search, X } from 'lucide-react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -23,6 +25,12 @@ const requestsFormSchema = z.object({
 type RequestsFormData = z.infer<typeof requestsFormSchema>
 
 export function TableFilters() {
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const [isFiltered, setIsFiltered] = useState(false)
+
+  const pageIndex = Number(searchParams.get('page')) ?? 0
+
   const requestsForm = useForm<RequestsFormData>({
     resolver: zodResolver(requestsFormSchema),
   })
@@ -33,10 +41,17 @@ export function TableFilters() {
     status,
     tutorName,
   }: RequestsFormData) {
-    console.log(animalName)
-    console.log(species)
-    console.log(status)
-    console.log(tutorName)
+    setIsFiltered(true)
+    router.push(
+      `/ngo/requests?page=${pageIndex}&_per_page=17&animalName=${animalName || ''}&tutorName=${tutorName || ''}&species=${species || ''}&status=${status || ''}`,
+    )
+  }
+
+  function handleClearFilters() {
+    setIsFiltered(false)
+    router.push(
+      `/ngo/requests?page=${pageIndex}&_per_page=17&animalName=&tutorName=&species=&status=`,
+    )
   }
 
   return (
@@ -90,7 +105,7 @@ export function TableFilters() {
                 value={field.value ?? ''}
               >
                 <FormControl>
-                  <SelectTrigger className="border-orange-700 bg-orange-400 p-2 text-xl text-white">
+                  <SelectTrigger className="w-40 border-orange-700 bg-orange-400 p-2 text-xl text-white">
                     <SelectValue placeholder="Espécie" />
                   </SelectTrigger>
                 </FormControl>
@@ -152,7 +167,8 @@ export function TableFilters() {
         </button>
         <button
           type="button"
-          disabled
+          disabled={!isFiltered}
+          onClick={() => handleClearFilters()}
           className="flex items-center justify-center gap-2 rounded-md border border-red-700 bg-red-500 px-3 text-white hover:bg-red-600 disabled:cursor-not-allowed disabled:bg-red-600 disabled:opacity-70"
         >
           Remover filtros

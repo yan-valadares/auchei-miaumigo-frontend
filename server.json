@@ -382,6 +382,24 @@
         "tutorName": "Juliana Nascimento",
         "species": "dog",
         "status": "analysing"
+      },
+      {
+        "requestId": 16,
+        "animalId": 16,
+        "tutorId": 16,
+        "animalName": "Bidu",
+        "tutorName": "Lucas Mendes",
+        "species": "dog",
+        "status": "refused"
+      },
+      {
+        "requestId": 17,
+        "animalId": 17,
+        "tutorId": 17,
+        "animalName": "Lola",
+        "tutorName": "Ana Paula Oliveira",
+        "species": "cat",
+        "status": "approved"
       }
     ]
 }
