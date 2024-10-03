@@ -1,34 +1,15 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Search } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import { useEffect, useState } from 'react'
 
 import { Pagination } from '@/components/Pagination'
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import LocationContext from '@/contexts/LocationContext'
 import { serverDevAPI } from '@/lib/axios'
 
 import TutorHeader from '../TutorHeader'
 import type { Ngo } from './NgoCard'
 import NgoCard from './NgoCard'
-
-const ngosListFormSchema = z.object({
-  state: z.string().nullable(),
-  city: z.string().nullable(),
-})
-
-type NgosListFormData = z.infer<typeof ngosListFormSchema>
+import { NgoFilters } from './NgoFilters'
 
 export default function NgosList() {
   const [ngos, setNgos] = useState<Ngo[]>([])
@@ -51,23 +32,6 @@ export default function NgosList() {
     fetchNgos()
   }, [pageIndex, stateParams, cityParams])
 
-  const { cities, states, selectedState, setSelectedState } =
-    useContext(LocationContext)
-
-  const lostAnimalsForm = useForm<NgosListFormData>({
-    resolver: zodResolver(ngosListFormSchema),
-    defaultValues: {
-      state: null,
-      city: null,
-    },
-  })
-
-  function onSubmit({ state, city }: NgosListFormData) {
-    router.push(
-      `/tutor/ngos?_page=${pageIndex}&_per_page=12&state=${state}&city=${city || ''}`,
-    )
-  }
-
   function handlePaginate(pageIndex: number) {
     router.push(`/ngos?page=${pageIndex}&_per_page=12`)
   }
@@ -79,74 +43,7 @@ export default function NgosList() {
         <div className="mb-2 flex w-full items-start text-4xl font-semibold text-purple-500">
           Ajude as pessoas a acharem seu amigos perdidos!
         </div>
-        <Form {...lostAnimalsForm}>
-          <form
-            onSubmit={lostAnimalsForm.handleSubmit(onSubmit)}
-            className="flex w-full justify-end space-x-6"
-          >
-            <FormField
-              name="state"
-              render={({ field }) => (
-                <FormItem>
-                  <Select
-                    value={selectedState}
-                    onValueChange={(value) => {
-                      setSelectedState(value)
-                      field.onChange(value)
-                      lostAnimalsForm.setValue('city', null)
-                    }}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="gap-2 border-orange-700 bg-orange-400 p-2 text-xl text-white">
-                        <SelectValue placeholder="UF" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {states.map((state) => (
-                        <SelectItem key={state.id} value={state.sigla}>
-                          {state.sigla}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              name="city"
-              render={({ field }) => (
-                <FormItem>
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                    disabled={!selectedState}
-                  >
-                    <FormControl>
-                      <SelectTrigger className="border-orange-700 bg-orange-400 p-2 text-xl text-white">
-                        <SelectValue>{field.value || 'Cidade'}</SelectValue>
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {cities.map((city) => (
-                        <SelectItem key={city.id} value={city.nome.toString()}>
-                          {city.nome}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-              )}
-            />
-
-            <button
-              type="submit"
-              className="rounded-md border border-purple-800 bg-purple-500 px-3 text-white hover:bg-purple-600"
-            >
-              <Search size={28} />
-            </button>
-          </form>
-        </Form>
+        <NgoFilters />
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
           {ngos.map((ngo) => (
             <NgoCard key={ngo.id} ngo={ngo} />
