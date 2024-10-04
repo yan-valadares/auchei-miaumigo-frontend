@@ -16,13 +16,9 @@ export interface LostAnimalProps {
   lostAnimal: LostAnimal
 }
 
-function capitalizeFirstLetter(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
-
 export default function LostAnimalCard({ lostAnimal }: LostAnimalProps) {
   return (
-    <div className="w-60 overflow-hidden rounded-xl border border-black">
+    <div className="w-60 overflow-hidden rounded-xl border border-black bg-white">
       <Image
         src={lostAnimal.imageUrl}
         width={240}
@@ -41,7 +37,7 @@ export default function LostAnimalCard({ lostAnimal }: LostAnimalProps) {
           )}
         </div>
         <p className="mt-2 text-orange-500">
-          {capitalizeFirstLetter(lostAnimal.city)}, {lostAnimal.state}
+          {lostAnimal.city}, {lostAnimal.state}
         </p>
       </div>
     </div>

@@ -139,7 +139,7 @@ export default function AnimalFilters() {
                     disabled={!selectedState}
                   >
                     <FormControl>
-                      <SelectTrigger className="w-60 border-orange-700 bg-orange-400 p-2 text-xl text-white">
+                      <SelectTrigger className="min-w-60 flex-1 border-orange-700 bg-orange-400 p-2 text-xl text-white">
                         <SelectValue placeholder="Cidade" />{' '}
                       </SelectTrigger>
                     </FormControl>
