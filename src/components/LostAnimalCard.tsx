@@ -25,7 +25,7 @@ export default function LostAnimalCard({ lostAnimal }: LostAnimalProps) {
         height={240}
         unoptimized
         alt="Imagem de um cachorro"
-        className="h-32 w-full object-cover"
+        className="h-32 w-full border-b border-black object-cover"
       />
       <div className="p-4 text-center">
         <div className="flex items-center justify-center gap-2 text-lg">

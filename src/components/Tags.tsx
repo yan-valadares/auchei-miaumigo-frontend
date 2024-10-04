@@ -1,10 +1,10 @@
-const variants = {
+export const variants = {
   independent: {
     color: '#C76CFF',
     text: 'Independente',
   },
   playful: {
-    color: '#FF885',
+    color: '#FF885C',
     text: 'Brincalhão',
   },
   calm: {

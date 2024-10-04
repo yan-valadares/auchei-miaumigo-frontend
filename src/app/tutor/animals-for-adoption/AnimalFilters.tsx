@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Search, X } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -20,6 +20,9 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import LocationContext from '@/contexts/LocationContext'
+import { serverDevAPI } from '@/lib/axios'
+
+import type { Ngo } from '../ngos/NgoCard'
 
 const animalFiltersFormSchema = z.object({
   state: z.string().nullable().optional(),
@@ -34,11 +37,22 @@ const animalFiltersFormSchema = z.object({
 type AnimalFiltersFormData = z.infer<typeof animalFiltersFormSchema>
 
 export default function AnimalFilters() {
+  const [ngos, setNgos] = useState<Ngo[]>([])
   const searchParams = useSearchParams()
   const router = useRouter()
   const [isFiltered, setIsFiltered] = useState(false)
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
+
+  useEffect(() => {
+    async function fetchNgos() {
+      const response = await serverDevAPI.get('/ngos')
+      console.log(response.data)
+      setNgos(response.data)
+    }
+
+    fetchNgos()
+  }, [])
 
   const animalFiltersForm = useForm<AnimalFiltersFormData>({
     resolver: zodResolver(animalFiltersFormSchema),
@@ -69,7 +83,7 @@ export default function AnimalFilters() {
   }
 
   return (
-    <aside className="flex h-full w-[25%] flex-col space-y-6 rounded-md bg-orange-300 p-8">
+    <aside className="flex h-full w-[25%] flex-col space-y-6 rounded-md border border-orange-700 bg-orange-300 p-8">
       <div className="flex w-full justify-center text-3xl font-semibold text-white">
         Filtros
       </div>
@@ -258,8 +272,11 @@ export default function AnimalFilters() {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="male">Macho</SelectItem>
-                    <SelectItem value="female">Fêmea</SelectItem>
+                    {ngos.map((ngo) => (
+                      <SelectItem key={ngo.id} value={ngo.name}>
+                        {ngo.name}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </FormItem>
