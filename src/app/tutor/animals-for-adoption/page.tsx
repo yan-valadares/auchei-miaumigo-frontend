@@ -17,16 +17,30 @@ export default function AnimalsForAdoption() {
   const pageIndex = Number(searchParams.get('page')) ?? 0
   const stateParams = searchParams.get('state') || ''
   const cityParams = searchParams.get('city') || ''
+  const animalGenderParams = searchParams.get('gender') || ''
+  const speciesParams = searchParams.get('species') || ''
+  const ageGroupParams = searchParams.get('ageGroup') || ''
+  const sizeParams = searchParams.get('size') || ''
+  const ngoParams = searchParams.get('ngo') || ''
 
   useEffect(() => {
     async function fetchAnimals() {
       const response = await serverDevAPI.get(
-        `/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
+        `/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}&gender=${animalGenderParams}&species=${speciesParams}&ageGroup=${ageGroupParams}&size=${sizeParams}&ngo=${ngoParams}`,
       )
       setAnimals(response.data)
     }
     fetchAnimals()
-  }, [pageIndex, stateParams, cityParams])
+  }, [
+    pageIndex,
+    stateParams,
+    cityParams,
+    animalGenderParams,
+    speciesParams,
+    ageGroupParams,
+    sizeParams,
+    ngoParams,
+  ])
 
   function handlePaginate(pageIndex: number) {
     router.push(`/tutor/animals-for-adoption?page=${pageIndex}&_per_page=12`)
@@ -38,12 +52,12 @@ export default function AnimalsForAdoption() {
       <div className="flex w-full flex-1">
         <AnimalFilters />
         <div className="flex h-full w-full flex-col px-24 py-12">
-          <div className="mb-4 flex flex-1 flex-wrap justify-end gap-8">
+          <div className="mb-4 grid flex-1 grid-cols-4 items-start justify-start gap-8">
             {animals.map((animal) => (
               <AnimalCard key={animal.id} animal={animal} />
             ))}
           </div>
-          <div className="flex w-full items-center justify-end">
+          <div className="flex w-full items-center justify-end px-6">
             <Pagination
               onPageChange={handlePaginate}
               pageIndex={pageIndex}

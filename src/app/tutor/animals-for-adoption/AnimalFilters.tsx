@@ -44,6 +44,8 @@ export default function AnimalFilters() {
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
 
+  const pageIndex = Number(searchParams.get('page')) ?? 0
+
   useEffect(() => {
     async function fetchNgos() {
       const response = await serverDevAPI.get('/ngos')
@@ -68,18 +70,16 @@ export default function AnimalFilters() {
     state,
   }: AnimalFiltersFormData) {
     setIsFiltered(true)
-    console.log(ageGroup)
-    console.log(animalGender)
-    console.log(city)
-    console.log(ngo)
-    console.log(size)
-    console.log(species)
-    console.log(state)
+    router.push(
+      `/tutor/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${state || ''}&city=${city || ''}&gender=${animalGender || ''}&species=${species || ''}&ageGroup=${ageGroup || ''}&size=${size || ''}&ngo=${ngo || ''}`,
+    )
   }
 
   function handleClearFilters() {
     setIsFiltered(false)
-    // router.push(`/tutor/ngos?_page=${pageIndex}&_per_page=12&state=&city=`)
+    router.push(
+      `/tutor/animals-for-adoption?_page=0&_per_page=12&state=&city=&gender=&ageGroup=&size=&ngo=`,
+    )
   }
 
   return (
@@ -126,7 +126,7 @@ export default function AnimalFilters() {
                     }}
                   >
                     <FormControl>
-                      <SelectTrigger className="gap-2 border-orange-700 bg-orange-400 p-2 text-xl text-white">
+                      <SelectTrigger className="gap-2 border-orange-700 bg-orange-400 px-1 py-2 text-xl text-white">
                         <SelectValue placeholder="UF" />
                       </SelectTrigger>
                     </FormControl>
@@ -153,7 +153,7 @@ export default function AnimalFilters() {
                     disabled={!selectedState}
                   >
                     <FormControl>
-                      <SelectTrigger className="min-w-60 flex-1 border-orange-700 bg-orange-400 p-2 text-xl text-white">
+                      <SelectTrigger className="min-w-60 flex-1 border-orange-700 bg-orange-400 px-1 py-2 text-xl text-white">
                         <SelectValue placeholder="Cidade" />{' '}
                       </SelectTrigger>
                     </FormControl>

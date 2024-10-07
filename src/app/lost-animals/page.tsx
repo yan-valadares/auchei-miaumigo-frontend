@@ -28,8 +28,8 @@ export default function LostAnimals() {
     fetchAnimals()
   }, [pageIndex, stateParams, cityParams])
 
-  function handlePaginate(pageIndex: number) {
-    router.push(`/lost-animals?page=${pageIndex}&_per_page=12`)
+  function handlePaginate() {
+    router.push(`/lost-animals?page=0&_per_page=12`)
   }
 
   return (
