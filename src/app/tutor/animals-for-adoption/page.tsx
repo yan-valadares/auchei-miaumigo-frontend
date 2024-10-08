@@ -1,5 +1,6 @@
 'use client'
 
+import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -9,6 +10,7 @@ import { serverDevAPI } from '@/lib/axios'
 
 import TutorHeader from '../TutorHeader'
 import AnimalFilters from './AnimalFilters'
+import AnimalForAdoptionTutorViewDialog from './AnimalForAdoptionDialogTutorView'
 
 export default function AnimalsForAdoption() {
   const [animals, setAnimals] = useState<Animal[]>([])
@@ -54,7 +56,16 @@ export default function AnimalsForAdoption() {
         <div className="flex h-full w-full flex-col px-24 py-12">
           <div className="mb-4 grid flex-1 grid-cols-4 items-start justify-start gap-8">
             {animals.map((animal) => (
-              <AnimalCard key={animal.id} animal={animal} />
+              <Dialog.Root key={animal.id}>
+                <Dialog.Trigger className="h-fit w-fit">
+                  <AnimalCard animal={animal} />
+                </Dialog.Trigger>
+
+                <Dialog.Portal>
+                  <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+                  <AnimalForAdoptionTutorViewDialog animalId={animal.id} />
+                </Dialog.Portal>
+              </Dialog.Root>
             ))}
           </div>
           <div className="flex w-full items-center justify-end px-6">

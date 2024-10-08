@@ -21,6 +21,7 @@ const config = {
       width: {
         app: '1320px',
         dialog: '640px',
+        cardDialog: '896px',
       },
       gridTemplateColumns: {
         app: 'minmax(35%, 50%) 1fr',
