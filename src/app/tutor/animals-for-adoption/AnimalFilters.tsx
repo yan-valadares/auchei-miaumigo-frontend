@@ -30,7 +30,7 @@ const animalFiltersFormSchema = z.object({
   species: z.enum(['dog', 'cat']).nullable().optional(),
   ageGroup: z.enum(['baby', 'young', 'old']).nullable().optional(),
   size: z.enum(['small', 'medium', 'large']).nullable().optional(),
-  animalGender: z.enum(['male', 'female']).nullable().optional(),
+  animalSex: z.enum(['male', 'female']).nullable().optional(),
   ngo: z.string().nullable().optional(),
 })
 
@@ -62,7 +62,7 @@ export default function AnimalFilters() {
 
   function onSubmit({
     ageGroup,
-    animalGender,
+    animalSex,
     city,
     ngo,
     size,
@@ -71,14 +71,14 @@ export default function AnimalFilters() {
   }: AnimalFiltersFormData) {
     setIsFiltered(true)
     router.push(
-      `/tutor/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${state || ''}&city=${city || ''}&gender=${animalGender || ''}&species=${species || ''}&ageGroup=${ageGroup || ''}&size=${size || ''}&ngo=${ngo || ''}`,
+      `/tutor/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${state || ''}&city=${city || ''}&sex=${animalSex || ''}&species=${species || ''}&ageGroup=${ageGroup || ''}&size=${size || ''}&ngo=${ngo || ''}`,
     )
   }
 
   function handleClearFilters() {
     setIsFiltered(false)
     router.push(
-      `/tutor/animals-for-adoption?_page=0&_per_page=12&state=&city=&gender=&ageGroup=&size=&ngo=`,
+      `/tutor/animals-for-adoption?_page=0&_per_page=12&state=&city=&sex=&ageGroup=&size=&ngo=`,
     )
   }
 
@@ -239,16 +239,16 @@ export default function AnimalFilters() {
           />
 
           <FormField
-            name="animalGender"
+            name="animalSex"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-base text-black">
-                  Gênero do animal
+                  Sexo do animal
                 </FormLabel>
                 <Select value={field.value} onValueChange={field.onChange}>
                   <FormControl>
                     <SelectTrigger className="w-full border-orange-700 bg-orange-400 px-3 py-2 text-xl text-white">
-                      <SelectValue placeholder="Gênero" />
+                      <SelectValue placeholder="Sexo" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>

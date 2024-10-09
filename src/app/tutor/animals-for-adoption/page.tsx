@@ -19,7 +19,7 @@ export default function AnimalsForAdoption() {
   const pageIndex = Number(searchParams.get('page')) ?? 0
   const stateParams = searchParams.get('state') || ''
   const cityParams = searchParams.get('city') || ''
-  const animalGenderParams = searchParams.get('gender') || ''
+  const animalSexParams = searchParams.get('sex') || ''
   const speciesParams = searchParams.get('species') || ''
   const ageGroupParams = searchParams.get('ageGroup') || ''
   const sizeParams = searchParams.get('size') || ''
@@ -28,7 +28,7 @@ export default function AnimalsForAdoption() {
   useEffect(() => {
     async function fetchAnimals() {
       const response = await serverDevAPI.get(
-        `/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}&gender=${animalGenderParams}&species=${speciesParams}&ageGroup=${ageGroupParams}&size=${sizeParams}&ngo=${ngoParams}`,
+        `/animals-for-adoption?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}&sex=${animalSexParams}&species=${speciesParams}&ageGroup=${ageGroupParams}&size=${sizeParams}&ngo=${ngoParams}`,
       )
       setAnimals(response.data)
     }
@@ -37,7 +37,7 @@ export default function AnimalsForAdoption() {
     pageIndex,
     stateParams,
     cityParams,
-    animalGenderParams,
+    animalSexParams,
     speciesParams,
     ageGroupParams,
     sizeParams,

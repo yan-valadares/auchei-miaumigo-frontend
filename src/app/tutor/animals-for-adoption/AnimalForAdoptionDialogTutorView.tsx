@@ -31,7 +31,7 @@ export default function AnimalForAdoptionTutorViewDialog({
   }, [animalId])
 
   return (
-    <Dialog.Content className="w-cardDialog fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 rounded-md bg-white text-gray-900 shadow">
+    <Dialog.Content className="fixed left-1/2 top-1/2 flex w-cardDialog -translate-x-1/2 -translate-y-1/2 rounded-md bg-white text-gray-900 shadow">
       <Dialog.Title hidden>Animal for adoption</Dialog.Title>
 
       <div className="h-auto w-1/2 flex-shrink-0 overflow-hidden rounded-l-md">
@@ -60,7 +60,7 @@ export default function AnimalForAdoptionTutorViewDialog({
           <div className="mb-4 flex h-full w-full flex-col space-y-4 pl-8 pr-8">
             <div className="flex w-full items-center justify-between">
               <p className="text-2xl">{animal.animalName}</p>
-              {animal.gender === 'male' ? (
+              {animal.sex === 'male' ? (
                 <BsGenderMale size={24} className="text-blue-500" />
               ) : (
                 <BsGenderFemale size={24} className="text-pink-300" />

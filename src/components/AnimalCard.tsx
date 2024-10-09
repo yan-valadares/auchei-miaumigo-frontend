@@ -6,7 +6,7 @@ import Tags, { type variants } from './Tags'
 export interface Animal {
   id: number
   animalName: string
-  gender: string
+  sex: string
   weight: number
   age: string
   species: string
@@ -42,7 +42,7 @@ export default function AnimalCard({ animal }: AnimalProps) {
         </div>
         <div className="flex items-center justify-center gap-2 text-lg">
           {animal.animalName}
-          {animal.gender === 'male' ? (
+          {animal.sex === 'male' ? (
             <BsGenderMale className="mb-1 text-blue-500" size={24} />
           ) : (
             <BsGenderFemale className="mb-1 text-pink-300" size={24} />

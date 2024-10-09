@@ -8,7 +8,7 @@ export interface LostAnimal {
   lostDate: Date
   city: string
   state: string
-  gender: 'male' | 'female'
+  sex: 'male' | 'female'
   imageUrl: string
 }
 
@@ -30,7 +30,7 @@ export default function LostAnimalCard({ lostAnimal }: LostAnimalProps) {
       <div className="p-4 text-center">
         <div className="flex items-center justify-center gap-2 text-lg">
           {lostAnimal.name}
-          {lostAnimal.gender === 'male' ? (
+          {lostAnimal.sex === 'male' ? (
             <BsGenderMale className="mb-1 text-blue-500" size={24} />
           ) : (
             <BsGenderFemale className="mb-1 text-pink-300" size={24} />
