@@ -152,3 +152,26 @@ const FileUploadInputVariant = forwardRef<
 FileUploadInputVariant.displayName = 'FileUploadInputVariant'
 
 export { FileUploadInputVariant }
+
+export interface TextareaInputProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  className?: string
+}
+
+const TextareaInputVariant = React.forwardRef<
+  HTMLTextAreaElement,
+  TextareaInputProps
+>((props, ref) => (
+  <textarea
+    {...props}
+    ref={ref}
+    className={cn(
+      'h-32 w-full rounded border border-gray-300 px-2 py-1 text-base text-blue-900 placeholder:text-slate-400',
+      props.className,
+    )}
+  />
+))
+
+TextareaInputVariant.displayName = 'TextareaInputVariant'
+
+export { TextareaInputVariant }

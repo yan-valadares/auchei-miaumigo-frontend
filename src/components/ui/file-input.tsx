@@ -6,10 +6,11 @@ import { cn } from '@/lib/utils'
 export interface ImageUploadInputProps {
   onChange: (file?: File) => void
   name?: string
+  className?: string
 }
 
 const ImageUploadInput = forwardRef<HTMLInputElement, ImageUploadInputProps>(
-  ({ onChange, name }, ref) => {
+  ({ onChange, name, className }, ref) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +29,8 @@ const ImageUploadInput = forwardRef<HTMLInputElement, ImageUploadInputProps>(
     }
 
     return (
-      <div>
+      <div className={className}>
+        {' '}
         <label
           htmlFor="file-upload"
           className={cn(
@@ -37,7 +39,6 @@ const ImageUploadInput = forwardRef<HTMLInputElement, ImageUploadInputProps>(
           )}
         >
           <CloudUpload className="h-5 w-5" />
-
           <span>Arraste e solte o arquivo</span>
         </label>
         <input
@@ -48,7 +49,6 @@ const ImageUploadInput = forwardRef<HTMLInputElement, ImageUploadInputProps>(
           onChange={handleFileChange}
           className="hidden"
         />
-
         {selectedFile && (
           <div className="mt-4 flex w-auto items-center justify-between rounded-lg border bg-white p-2 sm:p-4">
             <div className="flex items-center gap-1">
