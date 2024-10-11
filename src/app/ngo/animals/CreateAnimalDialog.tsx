@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Plus, X } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -41,7 +42,7 @@ const createAnimalFormSchema = z.object({
   imageUrl: fileSchema,
   animalName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   animalSex: z.enum(['male', 'female']),
-  weight: z.number().max(25, { message: 'Peso máximo 25kg' }),
+  weight: z.string(),
   age: z.string().min(6),
   species: z.enum(['dog', 'cat']),
   size: z.enum(['small', 'medium', 'large']),
@@ -72,6 +73,7 @@ export default function CreateAnimalDialog() {
 
   function onSubmit(values: CreateAnimalFormData) {
     console.log(values)
+    console.log(tags)
   }
 
   return (
@@ -268,7 +270,7 @@ export default function CreateAnimalDialog() {
 
               <div className="flex flex-col">
                 <label className="text-gray-500">Tags</label>
-                <div className="mt-1 flex items-center gap-4">
+                <div className="mt-1 flex items-center gap-2">
                   {tags.map((tag) => (
                     <button onClick={() => removeTag(tag)} key={tag}>
                       <Tags variant={tag} />
@@ -276,13 +278,108 @@ export default function CreateAnimalDialog() {
                   ))}
 
                   {tags.length < 3 && (
-                    <button
-                      type="button"
-                      className="rounded-md bg-blue-500 p-1 text-white hover:bg-blue-500"
-                      onClick={() => addTag('novaTag' as keyof typeof variants)}
-                    >
-                      <Plus size={18} />
-                    </button>
+                    <DropdownMenu.Root>
+                      <DropdownMenu.Trigger asChild>
+                        <button
+                          type="button"
+                          className="rounded-md bg-blue-500 p-1.5 text-white transition-colors duration-300 hover:bg-blue-600"
+                        >
+                          <Plus size={20} />
+                        </button>
+                      </DropdownMenu.Trigger>
+
+                      <DropdownMenu.Portal>
+                        <DropdownMenu.Content
+                          className="w-48 rounded-md bg-white p-2 shadow-lg transition-transform duration-300 ease-in-out"
+                          sideOffset={5}
+                        >
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('playful')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Brincalhão
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('calm')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Calmo
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('care')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Carinhoso
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('docile')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Dócil
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('energetic')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Energético
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('independent')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Independete
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('protector')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Protetor
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item asChild>
+                            <button
+                              type="button"
+                              onClick={() => addTag('selective')}
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                            >
+                              Seletivo
+                            </button>
+                          </DropdownMenu.Item>
+                          <DropdownMenu.Item
+                            asChild
+                            onSelect={() => addTag('sociable')}
+                          >
+                            <button
+                              className="block w-full rounded-md px-4 py-2 text-left text-sm transition-colors hover:bg-blue-100"
+                              type="button"
+                              onClick={() => addTag('sociable')}
+                            >
+                              Sociável
+                            </button>
+                          </DropdownMenu.Item>
+                        </DropdownMenu.Content>
+                      </DropdownMenu.Portal>
+                    </DropdownMenu.Root>
                   )}
                 </div>
               </div>
@@ -310,16 +407,10 @@ export default function CreateAnimalDialog() {
 
               <div className="flex gap-2">
                 <button
-                  type="button"
-                  className="flex flex-1 items-center justify-center rounded-md bg-red-500 py-2 text-xl font-semibold text-slate-100 hover:bg-red-600"
+                  type="submit"
+                  className="flex flex-1 items-center justify-center rounded-md bg-green-500 py-2 text-xl font-semibold text-slate-100 hover:bg-green-600"
                 >
-                  Excluir
-                </button>
-                <button
-                  type="button"
-                  className="flex flex-1 items-center justify-center rounded-md bg-blue-800 py-2 text-xl font-semibold text-slate-100 hover:bg-blue-600"
-                >
-                  Editar
+                  Adicionar animal
                 </button>
               </div>
             </div>

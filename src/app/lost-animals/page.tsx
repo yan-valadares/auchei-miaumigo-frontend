@@ -1,9 +1,11 @@
 'use client'
 
+import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import LostAnimalCard, { type LostAnimal } from '@/components/LostAnimalCard'
+import LostAnimalDialog from '@/components/LostAnimalDialog'
 import { Pagination } from '@/components/Pagination'
 import { serverDevAPI } from '@/lib/axios'
 
@@ -11,7 +13,7 @@ import TutorHeader from '../tutor/TutorHeader'
 import { LostAnimalsFilters } from './LostAnimalsFilters'
 
 export default function LostAnimals() {
-  const [animals, setAnimals] = useState<LostAnimal[]>([])
+  const [lostAnimals, setLostAnimals] = useState<LostAnimal[]>([])
   const router = useRouter()
   const searchParams = useSearchParams()
   const pageIndex = Number(searchParams.get('page')) ?? 0
@@ -23,7 +25,7 @@ export default function LostAnimals() {
       const response = await serverDevAPI.get(
         `/lost-animals?_page=${pageIndex}&_per_page=12&state=${stateParams}&city=${cityParams}`,
       )
-      setAnimals(response.data)
+      setLostAnimals(response.data)
     }
     fetchAnimals()
   }, [pageIndex, stateParams, cityParams])
@@ -41,8 +43,17 @@ export default function LostAnimals() {
         </div>
         <LostAnimalsFilters />
         <div className="flex w-full flex-1 flex-wrap items-start gap-8">
-          {animals.map((animal) => (
-            <LostAnimalCard key={animal.id} lostAnimal={animal} />
+          {lostAnimals.map((lostAnimal) => (
+            <Dialog.Root key={lostAnimal.id}>
+              <Dialog.Trigger className="h-fit w-fit">
+                <LostAnimalCard key={lostAnimal.id} lostAnimal={lostAnimal} />
+              </Dialog.Trigger>
+
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+                <LostAnimalDialog lostAnimalId={lostAnimal.id} />
+              </Dialog.Portal>
+            </Dialog.Root>
           ))}
         </div>
         <div className="mb-3 flex w-full items-center justify-end">

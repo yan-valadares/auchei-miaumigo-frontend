@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { serverDevAPI } from '@/lib/axios'
 
+import AnimalRequestDialog from './AnimalRequestDialog'
 import TutorPerfilDialogAdmView from './TutorPerfilDialogAdmView'
 
 export interface Request {
@@ -48,7 +49,16 @@ export function TableRow({ request }: TableRowProps) {
   return (
     <tr className="my-2 border-b border-gray-300">
       <td className="w-44 py-1 text-center text-blue-600">
-        {request.animalName}
+        <Dialog.Root>
+          <Dialog.Trigger className="h-fit w-fit">
+            {request.animalName}
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+            <AnimalRequestDialog animalId={request.animalId} />
+          </Dialog.Portal>
+        </Dialog.Root>
       </td>
       <td className="w-72 py-1 text-center text-blue-600">
         <Dialog.Root>

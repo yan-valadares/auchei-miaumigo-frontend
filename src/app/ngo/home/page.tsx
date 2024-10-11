@@ -15,7 +15,7 @@ export default function NGOHome() {
     <div className="flex min-h-screen w-full flex-col items-center border-red-100">
       <NGOHeader />
       <div className="flex h-full w-app flex-col items-center justify-center gap-8 px-32">
-        <Link href="">
+        <Link href="/ngo/animals">
           <Image
             src={myNGOAnimals.src}
             alt="Imagem de um cachorro marrom feliz que leva aos animais da minha ONG"
@@ -26,7 +26,7 @@ export default function NGOHome() {
           />
         </Link>
         <Link
-          href=""
+          href="/lost-animals"
           className="flex w-full items-center justify-center gap-4 rounded-lg bg-orange-400 py-2 text-4xl text-white"
         >
           Ajude outras pessoas a acharem o amigo perdido
@@ -38,7 +38,7 @@ export default function NGOHome() {
           </p>
           <LostAnimalsCarousel />
         </div>
-        <Link href="">
+        <Link href="/ngo/requests">
           <Image
             src={requests.src}
             alt="Gato com olhos esbugalhados que leva para aba solicitações da minha ONG"

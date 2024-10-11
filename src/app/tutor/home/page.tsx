@@ -14,7 +14,10 @@ export default function TutorHome() {
     <div className="flex min-h-screen w-full flex-col items-center border-red-100">
       <TutorHeader />
       <div className="flex h-full w-app flex-col items-center justify-center gap-8 px-32">
-        <Link href="">
+        <Link
+          href="https://www.petz.com.br/blog/adocao/importancia-da-adocao-responsavel/"
+          target="_blank"
+        >
           <Image
             src={adoptionBenefits.src}
             alt="Imagem de um cachorro triste que leva a um site para ajudar a compreender os benefícios da adoção"
@@ -25,7 +28,7 @@ export default function TutorHome() {
           />
         </Link>
         <Link
-          href=""
+          href="/lost-animals"
           className="flex w-full items-center justify-center gap-4 rounded-lg bg-orange-400 py-2 text-4xl text-white"
         >
           Ajude outras pessoas a acharem o amigo perdido
@@ -37,7 +40,7 @@ export default function TutorHome() {
           </p>
           <LostAnimalsCarousel />
         </div>
-        <Link href="">
+        <Link href="/tutor/animals-for-adoption">
           <Image
             src={findYourFriend.src}
             alt="Imagem de um cachorro olhando para o horizonte que leva para aba de busca de animais para adoção"

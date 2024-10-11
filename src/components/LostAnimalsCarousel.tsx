@@ -1,3 +1,4 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import { useEffect, useState } from 'react'
 
 import {
@@ -11,14 +12,15 @@ import { serverDevAPI } from '@/lib/axios'
 
 import type { LostAnimal } from './LostAnimalCard'
 import LostAnimalCard from './LostAnimalCard'
+import LostAnimalDialog from './LostAnimalDialog'
 
 export default function LostAnimalsCarousel() {
-  const [animals, setAnimals] = useState<LostAnimal[]>([])
+  const [lostAnimals, setLostAnimals] = useState<LostAnimal[]>([])
 
   useEffect(() => {
     async function fetchAnimals() {
       const response = await serverDevAPI.get(`/lost-animals?_page=0`)
-      setAnimals(response.data)
+      setLostAnimals(response.data)
     }
     fetchAnimals()
   }, [])
@@ -32,9 +34,18 @@ export default function LostAnimalsCarousel() {
       className="mt-4 w-full pl-4"
     >
       <CarouselContent>
-        {animals.map((animal) => (
-          <CarouselItem key={animal.id} className="basis-1/4">
-            <LostAnimalCard lostAnimal={animal} />
+        {lostAnimals.map((lostAnimal) => (
+          <CarouselItem key={lostAnimal.id} className="basis-1/4">
+            <Dialog.Root key={lostAnimal.id}>
+              <Dialog.Trigger className="h-fit w-fit">
+                <LostAnimalCard key={lostAnimal.id} lostAnimal={lostAnimal} />
+              </Dialog.Trigger>
+
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+                <LostAnimalDialog lostAnimalId={lostAnimal.id} />
+              </Dialog.Portal>
+            </Dialog.Root>
           </CarouselItem>
         ))}
       </CarouselContent>

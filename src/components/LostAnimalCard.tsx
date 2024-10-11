@@ -10,6 +10,7 @@ export interface LostAnimal {
   state: string
   sex: 'male' | 'female'
   imageUrl: string
+  tutorEmail: string
 }
 
 export interface LostAnimalProps {
