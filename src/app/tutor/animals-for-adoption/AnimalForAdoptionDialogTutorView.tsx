@@ -30,6 +30,10 @@ export default function AnimalForAdoptionTutorViewDialog({
     fetchAnimal()
   }, [animalId])
 
+  if (!animal) {
+    return
+  }
+
   return (
     <Dialog.Content className="fixed left-1/2 top-1/2 flex w-cardDialog -translate-x-1/2 -translate-y-1/2 rounded-md bg-white text-gray-900 shadow">
       <Dialog.Title hidden>Animal for adoption</Dialog.Title>
@@ -56,81 +60,77 @@ export default function AnimalForAdoptionTutorViewDialog({
             <X />
           </Dialog.Close>
         </div>
-        {animal ? (
-          <div className="mb-4 flex h-full w-full flex-col space-y-4 pl-8 pr-8">
-            <div className="flex w-full items-center justify-between">
-              <p className="text-2xl">{animal.animalName}</p>
-              {animal.sex === 'male' ? (
-                <BsGenderMale size={24} className="text-blue-500" />
-              ) : (
-                <BsGenderFemale size={24} className="text-pink-300" />
-              )}
-            </div>
-
-            <div className="flex items-center">
-              <div className="flex-1">
-                <label className="text-gray-500">Peso</label>
-                <p className="text-lg text-black">{animal.weight} kg</p>
-              </div>
-              <div className="flex-1">
-                <label className="text-gray-500">Idade aproximada</label>
-                <p className="text-lg text-black">{animal.age}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <label className="text-gray-500">Espécie</label>
-                <p className="text-lg text-black">
-                  {animal.species === 'dog' ? 'Cachorro' : 'Gato'}
-                </p>
-              </div>
-              <div className="flex-1">
-                <label className="text-gray-500">Porte</label>
-                <p className="text-lg text-black">
-                  {animal.size === 'small'
-                    ? 'Pequeno'
-                    : animal.size === 'medium'
-                      ? 'Médio'
-                      : 'Grande'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <label className="text-gray-500">ONG</label>
-                <p className="text-lg text-black">{animal.ngo}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <label className="text-gray-500">Estado</label>
-                <p className="text-lg text-black">{animal.state}</p>
-              </div>
-              <div className="flex-1">
-                <label className="text-gray-500">Cidade</label>
-                <p className="truncate text-lg text-black">{animal.city}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <label className="text-gray-500">Descrição</label>
-                <p className="text-lg text-black">{animal.description}</p>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="flex flex-1 items-center justify-center rounded-md bg-orange-500 py-2 text-xl font-semibold text-slate-100 hover:bg-red-600"
-            >
-              Achei meu amigo!
-            </button>
+        <div className="mb-4 flex h-full w-full flex-col space-y-4 pl-8 pr-8">
+          <div className="flex w-full items-center justify-between">
+            <p className="text-2xl">{animal.animalName}</p>
+            {animal.sex === 'male' ? (
+              <BsGenderMale size={24} className="text-blue-500" />
+            ) : (
+              <BsGenderFemale size={24} className="text-pink-300" />
+            )}
           </div>
-        ) : (
-          <p>Carregando...</p>
-        )}
+
+          <div className="flex items-center">
+            <div className="flex-1">
+              <label className="text-gray-500">Peso</label>
+              <p className="text-lg text-black">{animal.weight} kg</p>
+            </div>
+            <div className="flex-1">
+              <label className="text-gray-500">Idade aproximada</label>
+              <p className="text-lg text-black">{animal.age}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <label className="text-gray-500">Espécie</label>
+              <p className="text-lg text-black">
+                {animal.species === 'dog' ? 'Cachorro' : 'Gato'}
+              </p>
+            </div>
+            <div className="flex-1">
+              <label className="text-gray-500">Porte</label>
+              <p className="text-lg text-black">
+                {animal.size === 'small'
+                  ? 'Pequeno'
+                  : animal.size === 'medium'
+                    ? 'Médio'
+                    : 'Grande'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <label className="text-gray-500">ONG</label>
+              <p className="text-lg text-black">{animal.ngo}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <label className="text-gray-500">Estado</label>
+              <p className="text-lg text-black">{animal.state}</p>
+            </div>
+            <div className="flex-1">
+              <label className="text-gray-500">Cidade</label>
+              <p className="truncate text-lg text-black">{animal.city}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <label className="text-gray-500">Descrição</label>
+              <p className="text-lg text-black">{animal.description}</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            className="flex flex-1 items-center justify-center rounded-md bg-orange-500 py-2 text-xl font-semibold text-slate-100 hover:bg-orange-600"
+          >
+            Achei meu amigo!
+          </button>
+        </div>
       </div>
     </Dialog.Content>
   )

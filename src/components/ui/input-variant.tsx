@@ -175,3 +175,32 @@ const TextareaInputVariant = React.forwardRef<
 TextareaInputVariant.displayName = 'TextareaInputVariant'
 
 export { TextareaInputVariant }
+
+interface DateInputVariantProps extends Omit<InputProps, 'value'> {
+  value?: Date | string
+}
+
+const DateInputVariant = React.forwardRef<
+  HTMLInputElement,
+  DateInputVariantProps
+>(({ value, ...props }, ref) => {
+  const formattedValue =
+    value instanceof Date ? value.toISOString().split('T')[0] : value
+
+  return (
+    <Input
+      {...props}
+      type="date"
+      value={formattedValue}
+      className={cn(
+        'h-6 w-full rounded border border-gray-300 text-base text-blue-900 placeholder:text-slate-400',
+        props.className,
+      )}
+      ref={ref}
+    />
+  )
+})
+
+DateInputVariant.displayName = 'DateInputVariant'
+
+export { DateInputVariant }

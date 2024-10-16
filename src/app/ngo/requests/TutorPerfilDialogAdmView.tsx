@@ -29,6 +29,10 @@ export default function TutorPerfilAdmViewDialog({
     fetchTutor()
   }, [tutorId])
 
+  if (!tutor) {
+    return
+  }
+
   return (
     <Dialog.Content className="fixed left-1/2 top-1/2 w-dialog max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-md bg-white px-6 py-4 text-gray-900 shadow">
       <Dialog.Title hidden>User Perfil</Dialog.Title>
@@ -38,11 +42,7 @@ export default function TutorPerfilAdmViewDialog({
             <X />
           </Dialog.Close>
         </div>
-        {tutor ? (
-          <TutorInformationsAdmView tutor={tutor} />
-        ) : (
-          <p>Carregando...</p>
-        )}
+        <TutorInformationsAdmView tutor={tutor} />
       </div>
     </Dialog.Content>
   )
