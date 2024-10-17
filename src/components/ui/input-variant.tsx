@@ -91,8 +91,8 @@ export interface FileUploadInputVariantProps {
 
 const FileUploadInputVariant = forwardRef<
   HTMLInputElement,
-  FileUploadInputVariantProps
->(({ onChange, name }, ref) => {
+  FileUploadInputVariantProps & { className?: string }
+>(({ onChange, name, className }, ref) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +111,12 @@ const FileUploadInputVariant = forwardRef<
   }
 
   return (
-    <div className="relative flex h-28 w-28 overflow-hidden rounded-full border-2 border-gray-300">
+    <div
+      className={cn(
+        'relative flex h-28 w-28 overflow-hidden rounded-full border-2 border-gray-300',
+        className,
+      )}
+    >
       <label
         htmlFor="file-upload"
         className={cn(

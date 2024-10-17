@@ -1,5 +1,6 @@
 'use client'
 
+import * as Dialog from '@radix-ui/react-dialog'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -10,6 +11,7 @@ import TutorHeader from '../TutorHeader'
 import type { Ngo } from './NgoCard'
 import NgoCard from './NgoCard'
 import { NgoFilters } from './NgoFilters'
+import NgoPerfilDialogTutorView from './NgoPerfilDialogTutorView'
 
 export default function NgosList() {
   const [ngos, setNgos] = useState<Ngo[]>([])
@@ -46,7 +48,16 @@ export default function NgosList() {
         <NgoFilters />
         <div className={`flex w-full flex-1 flex-wrap items-start gap-8`}>
           {ngos.map((ngo) => (
-            <NgoCard key={ngo.id} ngo={ngo} />
+            <Dialog.Root key={ngo.id}>
+              <Dialog.Trigger className="h-fit w-fit">
+                <NgoCard ngo={ngo} />
+              </Dialog.Trigger>
+
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+                <NgoPerfilDialogTutorView ngoId={ngo.id} />
+              </Dialog.Portal>
+            </Dialog.Root>
           ))}
         </div>
         <div className="mb-3 flex w-full items-center justify-end">

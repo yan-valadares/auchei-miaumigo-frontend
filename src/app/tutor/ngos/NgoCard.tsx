@@ -1,14 +1,17 @@
 import Image from 'next/image'
 
 export interface Ngo {
-  id: number
-  name: string
-  email: string
+  id: string
+  admFirstName: string
+  admLasName: string
+  ngoName: string
   phone: string
-  streetName: string
+  streetname: string
+  houseNumber: number
   state: string
   city: string
-  number: number
+  cep: string
+  email: string
   logo: string
 }
 
@@ -33,7 +36,7 @@ export default function NgoCard({ ngo }: NgoProps) {
       />
       <div className="p-4 text-center">
         <div className="flex items-center justify-center gap-2 truncate text-lg">
-          {ngo.name}
+          {ngo.ngoName}
         </div>
         <p className="mt-2 text-orange-500">
           {capitalizeFirstLetter(ngo.city)}, {ngo.state}

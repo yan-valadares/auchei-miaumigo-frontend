@@ -40,17 +40,13 @@ export default function AnimalForAdoptionTutorViewDialog({
 
       <div className="h-auto w-1/2 flex-shrink-0 overflow-hidden rounded-l-md">
         <div className="relative h-full w-full">
-          {animal?.imageUrl ? (
-            <Image
-              src={animal.imageUrl}
-              alt="Imagem do perfil do usuário"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-l-md"
-            />
-          ) : (
-            <p>Imagem indisponível</p>
-          )}
+          <Image
+            src={animal.imageUrl}
+            alt="Imagem do perfil do usuário"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-l-md"
+          />
         </div>
       </div>
 

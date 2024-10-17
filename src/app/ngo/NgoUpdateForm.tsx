@@ -13,7 +13,6 @@ import {
 import { FormItemWithSpacing } from '@/components/ui/form-item-with-spacing'
 import {
   CepInputVariant,
-  CpfInputVariant,
   FileUploadInputVariant,
   InputVariant,
   NumberOnlyInputVariant,
@@ -41,11 +40,11 @@ const fileSchema = z
     return !file || file.size <= MAX_UPLOAD_SIZE
   }, 'Tamanho do arquivo menor que 3MB')
 
-const userProfileSchema = z.object({
-  avatar: fileSchema,
+const ngoProfileSchema = z.object({
+  ngoLogo: fileSchema,
   firstName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   lastName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
-  cpf: z.string().min(11).max(11, { message: 'Mínimo 2 caracteres' }),
+  ngoName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   phone: z.string().min(10, { message: 'Mínimo 10 dígitos' }),
   cep: z
     .string()
@@ -55,17 +54,16 @@ const userProfileSchema = z.object({
   email: z.string().email({ message: 'Email inválido' }),
   streetName: z.string().min(2, { message: 'Mínimo 2 caracteres' }),
   houseNumber: z.string().max(4).nullable(),
-  houseType: z.enum(['house', 'apartment']),
   state: z.string(),
   city: z.string(),
 })
 
-type UserProfileFormData = z.infer<typeof userProfileSchema>
+type NgoProfileFormData = z.infer<typeof ngoProfileSchema>
 
-const initialUserInformations: UserProfileFormData = {
+const initialNgoInformations: NgoProfileFormData = {
   firstName: '',
   lastName: '',
-  cpf: '',
+  ngoName: '',
   phone: '',
   email: '',
   cep: '',
@@ -73,22 +71,19 @@ const initialUserInformations: UserProfileFormData = {
   houseNumber: '',
   state: '',
   city: '',
-  houseType: 'apartment',
-  avatar: undefined,
+  ngoLogo: undefined,
 }
 
-export default function TutorUpdateForm({
-  setIsEditing,
-}: TutorUpdateFormProps) {
+export default function NgoUpdateForm({ setIsEditing }: TutorUpdateFormProps) {
   const { cities, states, selectedState, setSelectedState } =
     useContext(LocationContext)
 
-  const userPerfilForm = useForm<UserProfileFormData>({
-    resolver: zodResolver(userProfileSchema),
-    defaultValues: initialUserInformations,
+  const userPerfilForm = useForm<NgoProfileFormData>({
+    resolver: zodResolver(ngoProfileSchema),
+    defaultValues: initialNgoInformations,
   })
 
-  function onSubmit(values: UserProfileFormData) {
+  function onSubmit(values: NgoProfileFormData) {
     console.log(values)
   }
 
@@ -99,10 +94,10 @@ export default function TutorUpdateForm({
         className="flex flex-col gap-6"
       >
         <div className="flex w-full items-center justify-center">
-          <div className="flex h-28 w-28 overflow-hidden rounded-full">
+          <div className="flex h-28 w-48 justify-center overflow-hidden">
             <FormField
               control={userPerfilForm.control}
-              name="avatar"
+              name="ngoLogo"
               render={({ field }) => (
                 <FormItemWithSpacing>
                   <FormControl>
@@ -110,6 +105,7 @@ export default function TutorUpdateForm({
                       onChange={(file) => field.onChange(file)}
                       name={field.name}
                       ref={field.ref}
+                      className="w-36 rounded-none"
                     />
                   </FormControl>
                   <FormMessage className="text-xs" />
@@ -127,7 +123,7 @@ export default function TutorUpdateForm({
                 render={({ field }) => (
                   <FormItemWithSpacing labelSpacing="1">
                     <FormLabel className="text-base text-blue-900">
-                      Nome
+                      Nome do ADM
                     </FormLabel>
                     <FormControl>
                       <InputVariant
@@ -148,7 +144,7 @@ export default function TutorUpdateForm({
                 render={({ field }) => (
                   <FormItemWithSpacing labelSpacing="1">
                     <FormLabel className="text-base text-blue-900">
-                      Último nome
+                      Último nome do ADM
                     </FormLabel>
                     <FormControl>
                       <InputVariant
@@ -168,15 +164,15 @@ export default function TutorUpdateForm({
             <div className="flex flex-1 flex-col">
               <FormField
                 control={userPerfilForm.control}
-                name="cpf"
+                name="ngoName"
                 render={({ field }) => (
                   <FormItemWithSpacing labelSpacing="1">
                     <FormLabel className="text-base text-blue-900">
-                      CPF
+                      Nome da ONG
                     </FormLabel>
                     <FormControl>
-                      <CpfInputVariant
-                        placeholder="999.999.999-99"
+                      <InputVariant
+                        placeholder="Cuidadogs"
                         {...field}
                         className="w-full"
                       />
@@ -198,51 +194,6 @@ export default function TutorUpdateForm({
                     <FormControl>
                       <PhoneInputVariant
                         placeholder="(19) 99999-9999"
-                        {...field}
-                        className="w-full"
-                      />
-                    </FormControl>
-                    <FormMessage className="text-xs" />
-                  </FormItemWithSpacing>
-                )}
-              />
-            </div>
-          </div>
-
-          <div className="flex w-full gap-4">
-            <div className="flex flex-1 flex-col">
-              <FormField
-                control={userPerfilForm.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItemWithSpacing labelSpacing="1">
-                    <FormLabel className="text-base text-blue-900">
-                      Email
-                    </FormLabel>
-                    <FormControl>
-                      <InputVariant
-                        placeholder="alexandrina.monteirodias@email.com.br"
-                        {...field}
-                        className="w-full"
-                      />
-                    </FormControl>
-                    <FormMessage className="text-xs" />
-                  </FormItemWithSpacing>
-                )}
-              />
-            </div>
-            <div className="flex basis-1/4 flex-col">
-              <FormField
-                control={userPerfilForm.control}
-                name="cep"
-                render={({ field }) => (
-                  <FormItemWithSpacing labelSpacing="1">
-                    <FormLabel className="text-base text-blue-900">
-                      CEP
-                    </FormLabel>
-                    <FormControl>
-                      <CepInputVariant
-                        placeholder="99999-999"
                         {...field}
                         className="w-full"
                       />
@@ -298,9 +249,7 @@ export default function TutorUpdateForm({
                 )}
               />
             </div>
-          </div>
 
-          <div className="flex w-full gap-4">
             <div className="w-1/10 flex flex-col">
               <FormField
                 name="state"
@@ -335,6 +284,9 @@ export default function TutorUpdateForm({
                 )}
               />
             </div>
+          </div>
+
+          <div className="flex w-full gap-4">
             <div className="flex flex-1 flex-col">
               <FormField
                 name="city"
@@ -370,25 +322,46 @@ export default function TutorUpdateForm({
                 )}
               />
             </div>
-            <div className="flex basis-2/6 flex-col">
+            <div className="flex basis-1/4 flex-col">
               <FormField
-                name="houseType"
+                control={userPerfilForm.control}
+                name="cep"
                 render={({ field }) => (
                   <FormItemWithSpacing labelSpacing="1">
                     <FormLabel className="text-base text-blue-900">
-                      Tipo de casa
+                      CEP
                     </FormLabel>
-                    <Select onValueChange={field.onChange} required>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Tipo de casa" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="house">Casa</SelectItem>
-                        <SelectItem value="apartment">Apartamento</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <FormControl>
+                      <CepInputVariant
+                        placeholder="99999-999"
+                        {...field}
+                        className="w-full"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-xs" />
+                  </FormItemWithSpacing>
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="flex w-full gap-4">
+            <div className="flex flex-1 flex-col">
+              <FormField
+                control={userPerfilForm.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItemWithSpacing labelSpacing="1">
+                    <FormLabel className="text-base text-blue-900">
+                      Email
+                    </FormLabel>
+                    <FormControl>
+                      <InputVariant
+                        placeholder="alexandrina.monteirodias@email.com.br"
+                        {...field}
+                        className="w-full"
+                      />
+                    </FormControl>
                     <FormMessage className="text-xs" />
                   </FormItemWithSpacing>
                 )}

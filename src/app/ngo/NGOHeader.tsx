@@ -1,6 +1,9 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import { CircleUserRound } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import NgoPerfilDialog from './NgoPerfilDialog'
 
 export default function NGOHeader() {
   const pathName = usePathname()
@@ -34,7 +37,16 @@ export default function NGOHeader() {
         ))}
       </nav>
       <button className="h-fit w-fit">
-        <CircleUserRound size={32} className="text-white" />
+        <Dialog.Root>
+          <Dialog.Trigger className="h-fit w-fit">
+            <CircleUserRound size={32} className="text-white" />
+          </Dialog.Trigger>
+
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+            <NgoPerfilDialog />
+          </Dialog.Portal>
+        </Dialog.Root>
       </button>
     </header>
   )
