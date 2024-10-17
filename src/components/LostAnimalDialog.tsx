@@ -101,7 +101,7 @@ export default function LostAnimalDialog({
 
           <button
             type="button"
-            className="flex flex-1 items-center justify-center rounded-md bg-orange-500 py-2 text-xl font-semibold text-slate-100 hover:bg-red-600"
+            className="flex flex-1 items-center justify-center rounded-md bg-orange-500 py-2 text-xl font-semibold text-slate-100 hover:bg-orange-600"
           >
             Achei seu amigo!
           </button>
